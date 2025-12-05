@@ -1,4 +1,5 @@
 ﻿using ActivitiesAndTasksAPI.DTOs;
+using ActivitiesAndTasksAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActivitiesAndTasksAPI.Controllers
@@ -7,16 +8,20 @@ namespace ActivitiesAndTasksAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-
-        public UsersController()
+		private readonly UserModel _userModel;
+		public UsersController(UserModel userModel)
         {
-            
+            _userModel = userModel;
         }
 
 		// GET: api/students
 		[HttpGet]
 		public async Task<IActionResult> GetAll()
 		{
+
+			var users = await _userModel.GetAllUsersAsync();
+
+
 			return Ok();
 		}
 
@@ -33,8 +38,9 @@ namespace ActivitiesAndTasksAPI.Controllers
 		[HttpPost]
 		public async Task<IActionResult> Create([FromBody] AddUserDto input)
 		{
-			
-			return CreatedAtAction(nameof(GetById), new { id = 1 }, input);
+
+			var newUserId = await _userModel.CreateUserAsync(input);
+			return Ok(newUserId);
 		}
 
 		// PUT: api/students/5

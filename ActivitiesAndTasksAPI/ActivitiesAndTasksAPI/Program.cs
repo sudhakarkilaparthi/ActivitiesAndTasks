@@ -1,8 +1,21 @@
-﻿using Microsoft.OpenApi;
+﻿using ActivitiesAndTasksAPI.Data;
+using ActivitiesAndTasksAPI.Interfaces;
+using ActivitiesAndTasksAPI.Models;
+using ActivitiesAndTasksAPI.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// DbContext (SQL Server)
+var connectionString = builder.Configuration.GetConnectionString("SqlServerConnection");
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+
 // Add services to the container.
+// Repos & Services
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<UserModel>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
