@@ -1,0 +1,16 @@
+
+# Ignore Visual Studio cache
+
+# Visual Studio specific
+.vs/
+#ActivitiesAndTasksAPI/ActivitiesAndTasksAPI/bin
+#ActivitiesAndTasksAPI/ActivitiesAndTasksAPI/obj
+
+# Build results
+bin/
+obj/
+out/
+
+# Publish results
+publish/
+*.Publish.xml
