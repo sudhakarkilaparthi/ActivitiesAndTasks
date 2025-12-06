@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using ActivitiesAndTasksAPI.DTOs;
+using ActivitiesAndTasksAPI.Helpers;
+using ActivitiesAndTasksAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ActivitiesAndTasksAPI.Controllers
@@ -7,9 +9,24 @@ namespace ActivitiesAndTasksAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        public AuthController()
-        {
-            
-        }
-    }
+		private readonly AuthModel _authModel;
+		public AuthController (AuthModel authModel)
+		{
+			_authModel = authModel;
+		}
+
+		[HttpPost("Login")]
+		public async Task<IActionResult> Login([FromBody] LoginDto input)
+		{
+			ApiReturnResponse result = await _authModel.Login(input);
+			return ApiResponseHelper.BuildResponse(result, this);
+		}
+
+		[HttpPost("Register")]
+		public async Task<IActionResult> Register([FromBody] RegisterDto input)
+		{
+			// Implement login logic here
+			return Ok();
+		}
+	}
 }

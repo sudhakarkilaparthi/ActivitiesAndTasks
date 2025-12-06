@@ -11,10 +11,10 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("SqlServerConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
 
-// Add services to the container.
-// Repos & Services
+// Repos & Services to the container.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<UserModel>();
+builder.Services.AddScoped<AuthModel>();
 
 
 builder.Services.AddControllers();

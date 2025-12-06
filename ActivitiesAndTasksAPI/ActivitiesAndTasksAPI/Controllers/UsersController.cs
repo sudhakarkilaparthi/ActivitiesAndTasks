@@ -22,7 +22,7 @@ namespace ActivitiesAndTasksAPI.Controllers
 			var users = await _userModel.GetAllUsersAsync();
 
 
-			return Ok();
+			return Ok(users);
 		}
 
 

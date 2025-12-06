@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ActivitiesAndTasksAPI.Enums;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 using System.Data.Common;
 
@@ -18,7 +19,7 @@ namespace ActivitiesAndTasksAPI.Data
 		/// Caller must dispose the reader.
 		/// </summary>
 		public async Task<DbDataReader> DbExecuteReaderAsync(
-			string storedProcedureName,
+			SPs spEnum,
 			List<SqlParameter>? parameters = null)
 		{
 			var connection = DbConnection;
@@ -27,7 +28,7 @@ namespace ActivitiesAndTasksAPI.Data
 				await connection.OpenAsync();
 
 			var command = connection.CreateCommand();
-			command.CommandText = storedProcedureName;
+			command.CommandText = spEnum.GetStringValue();
 			command.CommandType = CommandType.StoredProcedure;
 
 			if (parameters != null)
@@ -47,13 +48,13 @@ namespace ActivitiesAndTasksAPI.Data
 		/// Maps result set to List&lt;T&gt; using a mapper function.
 		/// </summary>
 		public async Task<List<T>> DbExecuteReaderMapAsync<T>(
-			string storedProcedureName,
+			SPs spEnum,
 			List<SqlParameter>? parameters,
 			Func<DbDataReader, T> map)
 		{
 			var results = new List<T>();
 
-			await using var reader = await DbExecuteReaderAsync(storedProcedureName, parameters);
+			await using var reader = await DbExecuteReaderAsync(spEnum, parameters);
 
 			while (await reader.ReadAsync())
 			{
@@ -68,7 +69,7 @@ namespace ActivitiesAndTasksAPI.Data
 		/// Returns affected rows count.
 		/// </summary>
 		public async Task<int> DbExecuteNonQueryAsync(
-			string storedProcedureName,
+			SPs spEnum,
 			List<SqlParameter>? parameters = null)
 		{
 			var connection = DbConnection;
@@ -77,7 +78,7 @@ namespace ActivitiesAndTasksAPI.Data
 				await connection.OpenAsync();
 
 			await using var command = connection.CreateCommand();
-			command.CommandText = storedProcedureName;
+			command.CommandText = spEnum.GetStringValue();
 			command.CommandType = CommandType.StoredProcedure;
 
 			if (parameters != null)
@@ -100,7 +101,7 @@ namespace ActivitiesAndTasksAPI.Data
 		/// Executes a stored procedure and returns a single scalar value.
 		/// </summary>
 		public async Task<object?> DbExecuteScalarAsync(
-			string storedProcedureName,
+			SPs spEnum,
 			List<SqlParameter>? parameters = null)
 		{
 			var connection = DbConnection;
@@ -109,7 +110,7 @@ namespace ActivitiesAndTasksAPI.Data
 				await connection.OpenAsync();
 
 			await using var command = connection.CreateCommand();
-			command.CommandText = storedProcedureName;
+			command.CommandText = spEnum.GetStringValue();
 			command.CommandType = CommandType.StoredProcedure;
 
 			if (parameters != null)

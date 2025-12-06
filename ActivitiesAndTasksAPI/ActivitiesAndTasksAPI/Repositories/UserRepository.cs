@@ -1,5 +1,6 @@
 ﻿using ActivitiesAndTasksAPI.Data;
 using ActivitiesAndTasksAPI.DTOs;
+using ActivitiesAndTasksAPI.Enums;
 using ActivitiesAndTasksAPI.Helpers;
 using ActivitiesAndTasksAPI.Interfaces;
 using Microsoft.Data.SqlClient;
@@ -12,13 +13,12 @@ namespace ActivitiesAndTasksAPI.Repositories
     public class UserRepository : IUserRepository
     {
 
-		private readonly AppDbContext _context;
+		private readonly AppDbContext _dbContext;
 
 		public UserRepository(AppDbContext context)
 		{
-			_context = context;
+			_dbContext = context;
 		}
-
 
 
 		public async Task<List<User>> GetUsersAsync2()
@@ -26,20 +26,20 @@ namespace ActivitiesAndTasksAPI.Repositories
 			var users = new List<User>();
 
 			// No parameters for this SP → pass null
-			using DbDataReader reader = await _context.DbExecuteReaderAsync("sp_GetAllUsers");
+			using DbDataReader reader = await _dbContext.DbExecuteReaderAsync(SPs.spGetAllUsers);
 
 			while (await reader.ReadAsync())
 			{
 				//var user = new User
 				//{
-				//	UserId = reader.DREGetInt32("UserId"),
-				//	FirstName = reader.DREGetString("FirstName"),
-				//	LastName = reader.DREGetString("LastName"),
-				//	Email = reader.DREGetString("Email")
+				//	UserId = reader.DDRGetInt32("UserId"),
+				//	FirstName = reader.DDRGetString("FirstName"),
+				//	LastName = reader.DDRGetString("LastName"),
+				//	Email = reader.DDRGetString("Email")
 				//};
 				//users.Add(user);
 
-				//users.Add(MapUser(reader));
+				users.Add(MapUser(reader));
 			}
 
 			return users;
@@ -47,19 +47,8 @@ namespace ActivitiesAndTasksAPI.Repositories
 
 		public async Task<List<User>> GetUsersAsync()
 		{
-			List<User> users = await _context.DbExecuteReaderMapAsync("sp_GetAllUsers", null, MapUser);
+			List<User> users = await _dbContext.DbExecuteReaderMapAsync(SPs.spGetAllUsers, null, MapUser);
 			return users;
-		}
-
-		private User MapUser(DbDataReader reader)
-		{
-			return new User
-			{
-				UserId = reader.DREGetInt32("UserId"),
-				FirstName = reader.DREGetString("FirstName"),
-				LastName = reader.DREGetString("LastName"),
-				Email = reader.DREGetString("Email")
-			};
 		}
 
         public async Task<int> CreateUser(AddUserDto addUserDto)
@@ -70,7 +59,7 @@ namespace ActivitiesAndTasksAPI.Repositories
 				Direction = ParameterDirection.Output
 			};
 
-			var parameters = new List<SqlParameter>
+			List<SqlParameter> parameters = new List<SqlParameter>
 				{
 					new SqlParameter("@FirstName", addUserDto.FirstName),
 					new SqlParameter("@LastName", (object?)addUserDto.LastName ?? DBNull.Value),
@@ -82,12 +71,51 @@ namespace ActivitiesAndTasksAPI.Repositories
 				};
 
 			// Call your helper method
-			var effectedRows = await _context.DbExecuteNonQueryAsync("sp_CreateUser", parameters);
+			var effectedRows = await _dbContext.DbExecuteNonQueryAsync(SPs.spCreateUser, parameters);
 
 			// Retrieve the new user id from out param
 			int newUserIdOut =  (int)newUserIdParam.Value;
 
 			return newUserIdOut;
 		}
+
+		public async Task<User?> GetLogin(LoginDto input)
+		{
+
+			List<SqlParameter> parameters = new List<SqlParameter>
+			{
+				new SqlParameter("@Email", input.Email),
+				new SqlParameter("@PasswordHash", input.Password),
+			};
+
+			using DbDataReader reader = await _dbContext.DbExecuteReaderAsync(SPs.spUserLogin, parameters);
+
+			// Read only the FIRST ROW
+			if (await reader.ReadAsync())
+			{
+				return new User
+				{
+					UserId = reader.DDRGetInt32("UserId"),
+					FirstName = reader.DDRGetString("FirstName"),
+					LastName = reader.DDRGetString("LastName"),
+					Email = reader.DDRGetString("Email")
+				};
+			}
+
+			return null;
+		}
+
+		private User MapUser(DbDataReader reader)
+		{
+			return new User
+			{
+				UserId = reader.DDRGetInt32("UserId"),
+				FirstName = reader.DDRGetString("FirstName"),
+				LastName = reader.DDRGetString("LastName"),
+				Email = reader.DDRGetString("Email")
+			};
+		}
+
+       
     }
 }
