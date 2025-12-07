@@ -3,7 +3,7 @@
   <div class="welcome-section mb-4">
     <div class="row">
       <div class="col-lg-8">
-        <h1 class="welcome-title">Welcome back, John!</h1>
+        <h1 class="welcome-title">Welcome {{ user()?.firstName }}, {{ user()?.lastName }}!</h1>
         <p class="welcome-subtitle">Here's what's happening with your tasks today</p>
       </div>
       <div class="col-lg-4 d-flex align-items-center justify-content-lg-end gap-2 mt-3 mt-lg-0">
