@@ -7,12 +7,43 @@
         <p class="text-muted">Sign up to get started</p>
       </div>
 
+      <!-- Error Message -->
+      @if (errorMessage()) {
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ errorMessage() }}
+        <button type="button" class="btn-close" (click)="errorMessage.set('')"></button>
+      </div>
+      }
+
+      <!-- Success Message -->
+      @if (successMessage()) {
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ successMessage() }}
+      </div>
+      }
+
       <!-- Register Form -->
-      <form>
-        <!-- Full Name Input -->
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+        <!-- Username Input -->
         <div class="mb-3">
-          <label for="fullname" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="fullname" placeholder="John Doe" required />
+          <label for="userName" class="form-label">Username</label>
+          <input
+            type="text"
+            class="form-control"
+            [class.is-invalid]="userName?.invalid && userName?.touched"
+            id="userName"
+            placeholder="johndoe"
+            formControlName="userName"
+          />
+          @if (userName?.invalid && userName?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (userName?.errors?.['required']) {
+            <span>Username is required</span>
+            } @if (userName?.errors?.['minlength']) {
+            <span>Username must be at least 3 characters</span>
+            }
+          </div>
+          }
         </div>
 
         <!-- Email Input -->
@@ -21,10 +52,20 @@
           <input
             type="email"
             class="form-control"
+            [class.is-invalid]="email?.invalid && email?.touched"
             id="email"
             placeholder="your@email.com"
-            required
+            formControlName="email"
           />
+          @if (email?.invalid && email?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (email?.errors?.['required']) {
+            <span>Email is required</span>
+            } @if (email?.errors?.['email']) {
+            <span>Please enter a valid email</span>
+            }
+          </div>
+          }
         </div>
 
         <!-- Password Input -->
@@ -33,38 +74,86 @@
           <input
             type="password"
             class="form-control"
+            [class.is-invalid]="password?.invalid && password?.touched"
             id="password"
             placeholder="••••••••"
-            required
+            formControlName="password"
           />
           <small class="form-text">At least 8 characters</small>
+          @if (password?.invalid && password?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (password?.errors?.['required']) {
+            <span>Password is required</span>
+            } @if (password?.errors?.['minlength']) {
+            <span>Password must be at least 8 characters</span>
+            }
+          </div>
+          }
         </div>
 
         <!-- Confirm Password Input -->
         <div class="mb-3">
-          <label for="confirm-password" class="form-label">Confirm Password</label>
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
           <input
             type="password"
             class="form-control"
-            id="confirm-password"
+            [class.is-invalid]="
+              (confirmPassword?.invalid && confirmPassword?.touched) || passwordMismatch
+            "
+            id="confirmPassword"
             placeholder="••••••••"
-            required
+            formControlName="confirmPassword"
           />
+          @if (confirmPassword?.invalid && confirmPassword?.touched) {
+          <div class="invalid-feedback d-block">
+            @if (confirmPassword?.errors?.['required']) {
+            <span>Please confirm your password</span>
+            }
+          </div>
+          } @if (passwordMismatch) {
+          <div class="invalid-feedback d-block">Passwords do not match</div>
+          }
         </div>
 
         <!-- Terms Checkbox -->
         <div class="form-check mb-4">
-          <input class="form-check-input" type="checkbox" id="terms" required />
+          <input
+            class="form-check-input"
+            [class.is-invalid]="terms?.invalid && terms?.touched"
+            type="checkbox"
+            id="terms"
+            formControlName="terms"
+          />
           <label class="form-check-label" for="terms">
             I agree to the
             <a href="#" class="text-decoration-none">Terms of Service</a>
             and
             <a href="#" class="text-decoration-none">Privacy Policy</a>
           </label>
+          @if (terms?.invalid && terms?.touched) {
+          <div class="invalid-feedback d-block">You must agree to the terms</div>
+          }
         </div>
 
         <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary w-100 py-2 fw-semibold">Create Account</button>
+        <button
+          type="submit"
+          class="btn btn-primary w-100 py-2 fw-semibold"
+          [disabled]="!isFormValid || isLoading()"
+        >
+          @if (!isLoading()) {
+          <span>Create Account</span>
+          } @if (isLoading()) {
+          <span>
+            <span
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true"
+            ></span>
+            Creating account...
+          </span>
+          }
+        </button>
       </form>
 
       <!-- Footer Links -->

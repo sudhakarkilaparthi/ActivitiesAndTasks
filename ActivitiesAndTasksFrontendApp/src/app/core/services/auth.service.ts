@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
 import { LoginRequest, LoginResponse } from '../models/auth.model';
 import { StorageService } from './storage.service';
+import { ApiBaseResponse } from '../models/common.model';
 
 @Injectable({
   providedIn: 'root',
@@ -12,9 +13,17 @@ export class AuthService {
   constructor(private api: ApiService, private storage: StorageService) {}
 
   login(payload: LoginRequest): Observable<LoginResponse> {
+    // debugger;
     return this.api.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, payload).pipe(
       tap((res) => {
+        console.log('Login response:', res);
+        //debugger;
         this.storage.setToken(res.token);
+      }),
+      catchError((error) => {
+        // debugger;
+        console.error('Login error:', error);
+        throw error;
       })
     );
   }

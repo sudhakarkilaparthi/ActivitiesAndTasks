@@ -7,6 +7,19 @@ using Microsoft.OpenApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Services.AddCors(options =>
+{
+	options.AddPolicy("AllowAll", policy =>
+	{
+		policy
+			.AllowAnyOrigin()      // Allow all domains
+			.AllowAnyHeader()      // Allow all headers
+			.AllowAnyMethod();     // Allow GET, POST, PUT, DELETE, OPTIONS, etc.
+	});
+});
+
+
 // DbContext (SQL Server)
 var connectionString = builder.Configuration.GetConnectionString("SqlServerConnection");
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
@@ -62,6 +75,8 @@ builder.Services.AddSwaggerGen(options =>
 });
 
 var app = builder.Build();
+
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())

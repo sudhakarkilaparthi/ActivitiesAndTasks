@@ -3,7 +3,7 @@
 	public static class ResponseMessages
 	{
 		public const string InvalidInputData = "Invalid Input Data!.";
-		public const string InvalidUsernameOrPassword = "Invalid username or password!";
+		public const string InvalidUsernameOrPassword = "Invalid username or password! please try again";
 		public const string UnauthorizedAccess = "You are not authorized to perform this action.";
 		public const string SomethingWentWrong = "Something went wront!";
 		public const string UserRegisterSuccess = "User Registered Successfully";

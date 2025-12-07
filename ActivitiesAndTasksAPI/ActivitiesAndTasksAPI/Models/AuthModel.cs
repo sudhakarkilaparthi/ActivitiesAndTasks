@@ -24,6 +24,11 @@ namespace ActivitiesAndTasksAPI.Models
 				return apiReturnData;
 			}
 
+
+			user.Token = "abcdefghijklmnopqu";
+			user.ExpiresAt = DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm:ss");
+
+
 			apiReturnData.Data = user;
 			apiReturnData.Message = ResponseMessages.DataFetched("Login");
 			apiReturnData.Error = false;

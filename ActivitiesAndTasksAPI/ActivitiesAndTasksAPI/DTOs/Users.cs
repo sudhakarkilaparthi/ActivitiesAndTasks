@@ -6,18 +6,23 @@ namespace ActivitiesAndTasksAPI.DTOs
     
 	public class User
 	{
-		[JsonPropertyName("UserId")]
+		//[JsonPropertyName("UserId")]
 		public required int UserId { get; set; }
 
-		[JsonPropertyName("FirstName")]
+		//[JsonPropertyName("FirstName")]
 		public required string FirstName { get; set; }
 
-		[JsonPropertyName("LastName")]
+		//[JsonPropertyName("LastName")]
 		public required string LastName { get; set; }
 
-		[JsonPropertyName("Email")]
+		//[JsonPropertyName("Email")]
 		public required string Email { get; set; }
 		//public required string Password { get; set; }
+
+		public string Token { get; set; } = string.Empty;
+		public string ExpiresAt { get; set; } = string.Empty;
+		public string Role { get; set; } = string.Empty;
+
 
 	}
 
@@ -70,11 +75,11 @@ namespace ActivitiesAndTasksAPI.DTOs
 	{
 		[Required(ErrorMessage = "Email is required")]
 		[EmailAddress(ErrorMessage = "Email format is not valid")]
-		[JsonPropertyName("Email")]
+		[JsonPropertyName("email")]
 		public required string Email { get; set; }
 
 		[Required(ErrorMessage = "Password is required")]
-		[JsonPropertyName("Password")]
+		[JsonPropertyName("password")]
 		public required string Password { get; set; }
 	}
 
