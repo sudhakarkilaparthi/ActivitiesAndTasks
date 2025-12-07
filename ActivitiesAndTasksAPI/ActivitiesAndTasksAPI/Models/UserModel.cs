@@ -1,4 +1,6 @@
 ﻿using ActivitiesAndTasksAPI.DTOs;
+using ActivitiesAndTasksAPI.Enums;
+using ActivitiesAndTasksAPI.Helpers;
 using ActivitiesAndTasksAPI.Interfaces;
 
 namespace ActivitiesAndTasksAPI.Models
@@ -11,10 +13,18 @@ namespace ActivitiesAndTasksAPI.Models
 			this._userRepository = userRepository;
 		}
 
-		public async Task<List<User>> GetAllUsersAsync()
+		public async Task<ApiReturnResponse> GetAllUsersAsync()
 		{
+
+			ApiReturnResponse apiReturnData = new ApiReturnResponse();
 			//return await _userRepository.GetUsersAsync();
-			return await _userRepository.GetUsersAsync2();
+			List<User> users = await _userRepository.GetUsersAsync2();
+
+			apiReturnData.Data = users;
+			apiReturnData.Message = ResponseMessages.DataFetched("Users");
+			apiReturnData.Error = false;
+			apiReturnData.HttpResponseCode = HttpResponseCode.OK;
+			return apiReturnData;
 		}
 
 		public async Task<int> CreateUserAsync(AddUserDto addUserDto)
