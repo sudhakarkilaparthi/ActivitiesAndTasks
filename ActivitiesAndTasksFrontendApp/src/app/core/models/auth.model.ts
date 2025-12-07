@@ -4,12 +4,12 @@ export interface LoginRequest {
 }
 
 export interface LoginResponse {
-  token: string;
   expiresAt: string;
   firstName: string;
   lastName: string;
   email: string;
   role: string;
+  token: string;
 }
 export interface RegisterRequest {
   userName: string;

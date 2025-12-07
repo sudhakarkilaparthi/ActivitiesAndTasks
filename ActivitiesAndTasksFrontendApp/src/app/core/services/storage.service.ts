@@ -7,7 +7,9 @@ const TOKEN_KEY = 'access_token';
 })
 export class StorageService {
   setToken(token: string): void {
-    localStorage.setItem(TOKEN_KEY, token);
+    if (token != '' && token != null && token != undefined && token != 'undefined') {
+      localStorage.setItem(TOKEN_KEY, token);
+    }
   }
 
   getToken(): string | null {

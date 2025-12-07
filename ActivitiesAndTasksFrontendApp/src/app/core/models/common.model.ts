@@ -1,5 +1,5 @@
-export interface ApiBaseResponse {
+export interface ApiBaseResponse<T = any> {
   error: boolean;
   message: string;
-  data?: any;
+  data?: T;
 }

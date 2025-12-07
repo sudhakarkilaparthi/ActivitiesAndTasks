@@ -1,0 +1,410 @@
+<div class="settings-container">
+  <!-- Header -->
+  <div class="settings-header mb-4">
+    <h1 class="page-title">Settings</h1>
+    <p class="page-subtitle">Manage your account and application preferences</p>
+  </div>
+
+  <div class="row">
+    <!-- Settings Sidebar Navigation -->
+    <div class="col-lg-3 mb-4 mb-lg-0">
+      <div class="settings-nav">
+        <div class="nav-group">
+          <h6 class="nav-group-title">Account</h6>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'profile'"
+            (click)="$event.preventDefault(); scrollToSection('profile')"
+          >
+            <i class="bi bi-person-circle"></i>
+            <span>Profile</span>
+          </a>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'password'"
+            (click)="$event.preventDefault(); scrollToSection('password')"
+          >
+            <i class="bi bi-lock"></i>
+            <span>Password</span>
+          </a>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'notifications'"
+            (click)="$event.preventDefault(); scrollToSection('notifications')"
+          >
+            <i class="bi bi-bell"></i>
+            <span>Notifications</span>
+          </a>
+        </div>
+        <div class="nav-group mt-4">
+          <h6 class="nav-group-title">Preferences</h6>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'appearance'"
+            (click)="$event.preventDefault(); scrollToSection('appearance')"
+          >
+            <i class="bi bi-palette"></i>
+            <span>Appearance</span>
+          </a>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'language'"
+            (click)="$event.preventDefault(); scrollToSection('language')"
+          >
+            <i class="bi bi-translate"></i>
+            <span>Language</span>
+          </a>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'privacy'"
+            (click)="$event.preventDefault(); scrollToSection('privacy')"
+          >
+            <i class="bi bi-shield"></i>
+            <span>Privacy</span>
+          </a>
+        </div>
+        <div class="nav-group mt-4">
+          <h6 class="nav-group-title">Data</h6>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'export'"
+            (click)="$event.preventDefault(); scrollToSection('export')"
+          >
+            <i class="bi bi-download"></i>
+            <span>Export Data</span>
+          </a>
+          <a
+            href="#"
+            class="nav-item"
+            [class.active]="activeSection() === 'delete'"
+            (click)="$event.preventDefault(); scrollToSection('delete')"
+          >
+            <i class="bi bi-trash"></i>
+            <span>Delete Account</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Settings Content -->
+    <div class="col-lg-9">
+      <!-- Profile Settings -->
+      <div class="settings-card mb-4" id="profile">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Profile Information</h5>
+          <p class="card-subtitle">Update your personal information</p>
+        </div>
+        <div class="card-body">
+          <!-- Profile Picture -->
+          <div class="profile-picture-section mb-4 pb-4 border-bottom">
+            <div class="d-flex align-items-center gap-3">
+              <div class="profile-avatar">JD</div>
+              <div>
+                <p class="mb-2">
+                  <button class="btn btn-sm btn-primary">
+                    <i class="bi bi-upload"></i> Upload Photo
+                  </button>
+                </p>
+                <p class="text-muted small mb-0">Recommended size: 400x400px, Max 2MB</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Profile Form -->
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">First Name</label>
+              <input type="text" class="form-control" value="John" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label fw-semibold">Last Name</label>
+              <input type="text" class="form-control" value="Doe" />
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Email Address</label>
+              <input type="email" class="form-control" value="john.doe@example.com" />
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Bio</label>
+              <textarea class="form-control" rows="3" placeholder="Tell us about yourself...">
+Project Manager with 5+ years of experience in software development and team management.</textarea
+              >
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Phone Number</label>
+              <input type="tel" class="form-control" value="+1 (555) 123-4567" />
+            </div>
+            <div class="col-12 pt-2">
+              <button class="btn btn-primary">
+                <i class="bi bi-check-circle"></i> Save Changes
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Settings -->
+      <div class="settings-card mb-4" id="password">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Change Password</h5>
+          <p class="card-subtitle">Update your password to keep your account secure</p>
+        </div>
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label fw-semibold">Current Password</label>
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter your current password"
+              />
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">New Password</label>
+              <input type="password" class="form-control" placeholder="Enter your new password" />
+              <small class="text-muted"
+                >At least 8 characters with uppercase, lowercase, and numbers</small
+              >
+            </div>
+            <div class="col-12">
+              <label class="form-label fw-semibold">Confirm Password</label>
+              <input type="password" class="form-control" placeholder="Confirm your new password" />
+            </div>
+            <div class="col-12 pt-2">
+              <button class="btn btn-primary">
+                <i class="bi bi-check-circle"></i> Update Password
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Notification Settings -->
+      <div class="settings-card mb-4" id="notifications">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Notification Preferences</h5>
+          <p class="card-subtitle">Control how and when you receive notifications</p>
+        </div>
+        <div class="card-body">
+          <!-- Email Notifications -->
+          <div class="notification-group mb-4 pb-4 border-bottom">
+            <h6 class="mb-3">Email Notifications</h6>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="emailTasks" checked />
+              <label class="form-check-label" for="emailTasks">
+                <strong>Task Updates</strong>
+                <br />
+                <small class="text-muted">Get notified when tasks are assigned or updated</small>
+              </label>
+            </div>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="emailComments" checked />
+              <label class="form-check-label" for="emailComments">
+                <strong>Comments & Mentions</strong>
+                <br />
+                <small class="text-muted">Get notified when someone mentions you or replies</small>
+              </label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="emailWeekly" />
+              <label class="form-check-label" for="emailWeekly">
+                <strong>Weekly Digest</strong>
+                <br />
+                <small class="text-muted">Receive a weekly summary of your activities</small>
+              </label>
+            </div>
+          </div>
+
+          <!-- Push Notifications -->
+          <div class="notification-group mb-4 pb-4 border-bottom">
+            <h6 class="mb-3">Push Notifications</h6>
+            <div class="form-check form-switch mb-3">
+              <input class="form-check-input" type="checkbox" id="pushTasks" checked />
+              <label class="form-check-label" for="pushTasks">
+                <strong>Task Updates</strong>
+                <br />
+                <small class="text-muted">Get instant notifications on your device</small>
+              </label>
+            </div>
+            <div class="form-check form-switch">
+              <input class="form-check-input" type="checkbox" id="pushMessages" />
+              <label class="form-check-label" for="pushMessages">
+                <strong>Direct Messages</strong>
+                <br />
+                <small class="text-muted">Get notified for new direct messages</small>
+              </label>
+            </div>
+          </div>
+
+          <!-- Quiet Hours -->
+          <div class="quiet-hours">
+            <h6 class="mb-3">Quiet Hours</h6>
+            <p class="text-muted small mb-3">No notifications will be sent during quiet hours</p>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Start Time</label>
+                <input type="time" class="form-control" value="22:00" />
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">End Time</label>
+                <input type="time" class="form-control" value="08:00" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Appearance Settings -->
+      <div class="settings-card mb-4" id="appearance">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Appearance</h5>
+          <p class="card-subtitle">Customize the look and feel of your application</p>
+        </div>
+        <div class="card-body">
+          <div class="form-group mb-4">
+            <label class="form-label fw-semibold mb-3">Theme</label>
+            <div class="theme-options">
+              <div class="theme-option">
+                <input type="radio" name="theme" id="themeLight" value="light" checked />
+                <label for="themeLight" class="theme-label">
+                  <div class="theme-preview light"></div>
+                  <span>Light</span>
+                </label>
+              </div>
+              <div class="theme-option">
+                <input type="radio" name="theme" id="themeDark" value="dark" />
+                <label for="themeDark" class="theme-label">
+                  <div class="theme-preview dark"></div>
+                  <span>Dark</span>
+                </label>
+              </div>
+              <div class="theme-option">
+                <input type="radio" name="theme" id="themeAuto" value="auto" />
+                <label for="themeAuto" class="theme-label">
+                  <div class="theme-preview auto"></div>
+                  <span>Auto</span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label fw-semibold mb-3">Accent Color</label>
+            <div class="color-options">
+              <input type="radio" name="accent" class="color-option" value="blue" checked />
+              <input type="radio" name="accent" class="color-option" value="purple" />
+              <input type="radio" name="accent" class="color-option" value="green" />
+              <input type="radio" name="accent" class="color-option" value="red" />
+              <input type="radio" name="accent" class="color-option" value="orange" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Language Settings (Placeholder) -->
+      <div class="settings-card mb-4" id="language" style="display: none">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Language</h5>
+          <p class="card-subtitle">Coming soon</p>
+        </div>
+      </div>
+
+      <!-- Privacy Settings -->
+      <div class="settings-card mb-4" id="privacy">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Privacy & Security</h5>
+          <p class="card-subtitle">Control your privacy and security settings</p>
+        </div>
+        <div class="card-body">
+          <div class="privacy-item mb-3 pb-3 border-bottom">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h6 class="mb-1">Profile Visibility</h6>
+                <p class="text-muted small mb-0">Make your profile visible to other users</p>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="profileVisibility" checked />
+              </div>
+            </div>
+          </div>
+
+          <div class="privacy-item mb-3 pb-3 border-bottom">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h6 class="mb-1">Show Online Status</h6>
+                <p class="text-muted small mb-0">Let others see when you're online</p>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="onlineStatus" checked />
+              </div>
+            </div>
+          </div>
+
+          <div class="privacy-item mb-3 pb-3 border-bottom">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h6 class="mb-1">Two-Factor Authentication</h6>
+                <p class="text-muted small mb-0">Enhance your account security with 2FA</p>
+              </div>
+              <button class="btn btn-sm btn-outline-primary">
+                <i class="bi bi-shield-check"></i> Enable
+              </button>
+            </div>
+          </div>
+
+          <div class="privacy-item pb-3">
+            <div class="d-flex justify-content-between align-items-start">
+              <div>
+                <h6 class="mb-1">Data Collection</h6>
+                <p class="text-muted small mb-0">
+                  Allow us to collect usage data to improve the service
+                </p>
+              </div>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="dataCollection" checked />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Export Data -->
+      <div class="settings-card mb-4" id="export">
+        <div class="card-header">
+          <h5 class="card-title mb-0">Export Your Data</h5>
+          <p class="card-subtitle">Download all your data in a portable format</p>
+        </div>
+        <div class="card-body">
+          <p class="text-muted mb-3">
+            Export all your tasks, projects, and settings in a portable format. This includes all
+            historical data and activity logs.
+          </p>
+          <button class="btn btn-outline-secondary">
+            <i class="bi bi-download"></i> Export Data
+          </button>
+        </div>
+      </div>
+
+      <!-- Delete Account -->
+      <div class="settings-card danger-zone" id="delete">
+        <div class="card-header">
+          <h5 class="card-title mb-0 text-danger">Delete Account</h5>
+          <p class="card-subtitle">Irreversible action - proceed with caution</p>
+        </div>
+        <div class="card-body">
+          <p class="text-muted mb-3">
+            Permanently delete your account and all associated data. This action cannot be undone.
+          </p>
+          <button class="btn btn-danger"><i class="bi bi-trash"></i> Delete Account</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

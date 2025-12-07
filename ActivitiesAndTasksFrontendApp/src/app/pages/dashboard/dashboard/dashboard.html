@@ -1,1 +1,457 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <!-- Welcome Section -->
+  <div class="welcome-section mb-4">
+    <div class="row">
+      <div class="col-lg-8">
+        <h1 class="welcome-title">Welcome back, John!</h1>
+        <p class="welcome-subtitle">Here's what's happening with your tasks today</p>
+      </div>
+      <div class="col-lg-4 d-flex align-items-center justify-content-lg-end gap-2 mt-3 mt-lg-0">
+        <button class="btn btn-outline-secondary"><i class="bi bi-download"></i> Export</button>
+        <button class="btn btn-primary"><i class="bi bi-plus-circle"></i> New Task</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Key Metrics Section -->
+  <div class="metrics-section mb-4">
+    <div class="row g-3">
+      <!-- Total Tasks -->
+      <div class="col-md-6 col-lg-3">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Total Tasks</span>
+            <span class="metric-icon bg-primary">
+              <i class="bi bi-list-check"></i>
+            </span>
+          </div>
+          <div class="metric-body">
+            <h2 class="metric-value">48</h2>
+            <p class="metric-change positive"><i class="bi bi-arrow-up"></i> 12% from last week</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Completed Tasks -->
+      <div class="col-md-6 col-lg-3">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Completed</span>
+            <span class="metric-icon bg-success">
+              <i class="bi bi-check-circle"></i>
+            </span>
+          </div>
+          <div class="metric-body">
+            <h2 class="metric-value">32</h2>
+            <p class="metric-change positive"><i class="bi bi-arrow-up"></i> 8% from last week</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- In Progress -->
+      <div class="col-md-6 col-lg-3">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">In Progress</span>
+            <span class="metric-icon bg-warning">
+              <i class="bi bi-hourglass-split"></i>
+            </span>
+          </div>
+          <div class="metric-body">
+            <h2 class="metric-value">10</h2>
+            <p class="metric-change neutral"><i class="bi bi-dash-lg"></i> Same as last week</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pending -->
+      <div class="col-md-6 col-lg-3">
+        <div class="metric-card">
+          <div class="metric-header">
+            <span class="metric-label">Pending</span>
+            <span class="metric-icon bg-danger">
+              <i class="bi bi-exclamation-circle"></i>
+            </span>
+          </div>
+          <div class="metric-body">
+            <h2 class="metric-value">6</h2>
+            <p class="metric-change negative"><i class="bi bi-arrow-down"></i> 2% from last week</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="row g-4 mb-4">
+    <!-- Tasks Chart -->
+    <div class="col-lg-8">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="card-title mb-0">Tasks Overview</h5>
+        </div>
+        <div class="card-body">
+          <div class="chart-placeholder">
+            <svg viewBox="0 0 400 250" xmlns="http://www.w3.org/2000/svg" class="chart-svg">
+              <!-- Grid lines -->
+              <g class="grid">
+                <line x1="50" y1="220" x2="380" y2="220" stroke="#e9ecef" stroke-width="1" />
+                <line x1="50" y1="170" x2="380" y2="170" stroke="#e9ecef" stroke-width="1" />
+                <line x1="50" y1="120" x2="380" y2="120" stroke="#e9ecef" stroke-width="1" />
+                <line x1="50" y1="70" x2="380" y2="70" stroke="#e9ecef" stroke-width="1" />
+              </g>
+
+              <!-- Bars -->
+              <g class="bars">
+                <!-- Monday -->
+                <rect x="60" y="140" width="35" height="80" fill="#667eea" class="bar" />
+                <!-- Tuesday -->
+                <rect x="105" y="100" width="35" height="120" fill="#667eea" class="bar" />
+                <!-- Wednesday -->
+                <rect x="150" y="120" width="35" height="100" fill="#667eea" class="bar" />
+                <!-- Thursday -->
+                <rect x="195" y="80" width="35" height="140" fill="#667eea" class="bar" />
+                <!-- Friday -->
+                <rect x="240" y="110" width="35" height="110" fill="#764ba2" class="bar" />
+                <!-- Saturday -->
+                <rect x="285" y="150" width="35" height="70" fill="#764ba2" class="bar" />
+                <!-- Sunday -->
+                <rect x="330" y="160" width="35" height="60" fill="#764ba2" class="bar" />
+              </g>
+
+              <!-- Labels -->
+              <g class="labels">
+                <text x="77.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">Mon</text>
+                <text x="122.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">
+                  Tue
+                </text>
+                <text x="167.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">
+                  Wed
+                </text>
+                <text x="212.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">
+                  Thu
+                </text>
+                <text x="257.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">
+                  Fri
+                </text>
+                <text x="302.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">
+                  Sat
+                </text>
+                <text x="347.5" y="240" text-anchor="middle" font-size="12" fill="#6c757d">
+                  Sun
+                </text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="col-lg-4">
+      <div class="card border-0 shadow-sm h-100">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="card-title mb-0">Completion Rate</h5>
+        </div>
+        <div class="card-body">
+          <div class="progress-section">
+            <div class="progress-circle">
+              <svg viewBox="0 0 120 120" class="progress-svg">
+                <circle cx="60" cy="60" r="54" fill="none" stroke="#e9ecef" stroke-width="8" />
+                <circle
+                  cx="60"
+                  cy="60"
+                  r="54"
+                  fill="none"
+                  stroke="url(#progressGradient)"
+                  stroke-width="8"
+                  stroke-linecap="round"
+                  stroke-dasharray="169.65 339.29"
+                  transform="rotate(-90 60 60)"
+                  class="progress-ring"
+                />
+                <defs>
+                  <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color: #667eea; stop-opacity: 1" />
+                    <stop offset="100%" style="stop-color: #764ba2; stop-opacity: 1" />
+                  </linearGradient>
+                </defs>
+              </svg>
+              <div class="progress-text">
+                <span class="progress-value">66%</span>
+                <span class="progress-label">Complete</span>
+              </div>
+            </div>
+          </div>
+          <div class="progress-stats mt-4">
+            <div class="progress-stat">
+              <span class="stat-label">On Track</span>
+              <span class="stat-value">32</span>
+            </div>
+            <div class="progress-stat">
+              <span class="stat-label">Overdue</span>
+              <span class="stat-value">6</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Tasks -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom">
+          <div class="row align-items-center">
+            <div class="col">
+              <h5 class="card-title mb-0">Recent Tasks</h5>
+            </div>
+            <div class="col-auto">
+              <a href="#" class="text-decoration-none">View All</a>
+            </div>
+          </div>
+        </div>
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <tbody>
+                <!-- Task 1 -->
+                <tr class="task-row">
+                  <td class="ps-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="task1" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-info">
+                      <h6 class="task-title">Complete project documentation</h6>
+                      <p class="task-meta">Due: Dec 15, 2024</p>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-info">Documentation</span>
+                  </td>
+                  <td>
+                    <div class="progress" style="height: 6px">
+                      <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        style="width: 85%"
+                      ></div>
+                    </div>
+                  </td>
+                  <td class="pe-4">
+                    <span class="badge bg-success">In Progress</span>
+                  </td>
+                </tr>
+
+                <!-- Task 2 -->
+                <tr class="task-row">
+                  <td class="ps-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="task2" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-info">
+                      <h6 class="task-title">Review code changes</h6>
+                      <p class="task-meta">Due: Dec 12, 2024</p>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-warning">Code Review</span>
+                  </td>
+                  <td>
+                    <div class="progress" style="height: 6px">
+                      <div
+                        class="progress-bar bg-danger"
+                        role="progressbar"
+                        style="width: 30%"
+                      ></div>
+                    </div>
+                  </td>
+                  <td class="pe-4">
+                    <span class="badge bg-danger">Overdue</span>
+                  </td>
+                </tr>
+
+                <!-- Task 3 -->
+                <tr class="task-row">
+                  <td class="ps-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="task3" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-info">
+                      <h6 class="task-title">Schedule team meeting</h6>
+                      <p class="task-meta">Due: Dec 10, 2024</p>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-secondary">Meeting</span>
+                  </td>
+                  <td>
+                    <div class="progress" style="height: 6px">
+                      <div
+                        class="progress-bar bg-success"
+                        role="progressbar"
+                        style="width: 100%"
+                      ></div>
+                    </div>
+                  </td>
+                  <td class="pe-4">
+                    <span class="badge bg-success">Completed</span>
+                  </td>
+                </tr>
+
+                <!-- Task 4 -->
+                <tr class="task-row">
+                  <td class="ps-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="task4" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-info">
+                      <h6 class="task-title">Update API documentation</h6>
+                      <p class="task-meta">Due: Dec 18, 2024</p>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-info">Documentation</span>
+                  </td>
+                  <td>
+                    <div class="progress" style="height: 6px">
+                      <div class="progress-bar bg-info" role="progressbar" style="width: 50%"></div>
+                    </div>
+                  </td>
+                  <td class="pe-4">
+                    <span class="badge bg-info">In Progress</span>
+                  </td>
+                </tr>
+
+                <!-- Task 5 -->
+                <tr class="task-row">
+                  <td class="ps-4">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="task5" />
+                    </div>
+                  </td>
+                  <td>
+                    <div class="task-info">
+                      <h6 class="task-title">Deploy to production</h6>
+                      <p class="task-meta">Due: Dec 20, 2024</p>
+                    </div>
+                  </td>
+                  <td>
+                    <span class="badge bg-danger">Deployment</span>
+                  </td>
+                  <td>
+                    <div class="progress" style="height: 6px">
+                      <div
+                        class="progress-bar bg-warning"
+                        role="progressbar"
+                        style="width: 45%"
+                      ></div>
+                    </div>
+                  </td>
+                  <td class="pe-4">
+                    <span class="badge bg-warning">Pending</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom Stats Row -->
+  <div class="row g-4">
+    <!-- Team Members -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="card-title mb-0">Team Members</h5>
+        </div>
+        <div class="card-body">
+          <div class="team-members">
+            <div class="team-member">
+              <div class="member-avatar">JD</div>
+              <div class="member-info">
+                <h6 class="member-name">John Doe</h6>
+                <p class="member-role">Project Manager</p>
+              </div>
+              <span class="status-badge online"></span>
+            </div>
+            <div class="team-member">
+              <div class="member-avatar bg-success">AS</div>
+              <div class="member-info">
+                <h6 class="member-name">Alice Smith</h6>
+                <p class="member-role">Developer</p>
+              </div>
+              <span class="status-badge online"></span>
+            </div>
+            <div class="team-member">
+              <div class="member-avatar bg-warning">BJ</div>
+              <div class="member-info">
+                <h6 class="member-name">Bob Johnson</h6>
+                <p class="member-role">Designer</p>
+              </div>
+              <span class="status-badge offline"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Activity -->
+    <div class="col-lg-6">
+      <div class="card border-0 shadow-sm">
+        <div class="card-header bg-white border-bottom">
+          <h5 class="card-title mb-0">Recent Activity</h5>
+        </div>
+        <div class="card-body">
+          <div class="activity-feed">
+            <div class="activity-item">
+              <div class="activity-icon bg-success">
+                <i class="bi bi-check-circle"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Alice Smith</strong> completed task "Update database schema"
+                </p>
+                <p class="activity-time">2 hours ago</p>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon bg-info">
+                <i class="bi bi-chat-square"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Bob Johnson</strong> commented on "Design mockups"
+                </p>
+                <p class="activity-time">4 hours ago</p>
+              </div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon bg-warning">
+                <i class="bi bi-exclamation-circle"></i>
+              </div>
+              <div class="activity-content">
+                <p class="activity-text">
+                  <strong>Project</strong> milestone reached: 50% complete
+                </p>
+                <p class="activity-time">1 day ago</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

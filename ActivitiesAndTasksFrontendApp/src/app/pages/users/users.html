@@ -1,0 +1,344 @@
+<div class="users-container">
+  <!-- Header Section -->
+  <div class="users-header">
+    <div class="row align-items-center mb-4">
+      <div class="col-md-6">
+        <div>
+          <h1 class="page-title">Users Management</h1>
+          <p class="page-subtitle">Manage and view all system users</p>
+        </div>
+      </div>
+      <div class="col-md-6 text-end">
+        <button class="btn btn-primary btn-lg">
+          <i class="bi bi-plus-circle"></i> Add New User
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search and Filter Section -->
+  <div class="search-filter-section mb-4">
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="input-group">
+          <span class="input-group-text bg-light">
+            <i class="bi bi-search"></i>
+          </span>
+          <input type="text" class="form-control" placeholder="Search users by name or email..." />
+        </div>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select">
+          <option selected>All Roles</option>
+          <option>Admin</option>
+          <option>User</option>
+          <option>Moderator</option>
+          <option>Guest</option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select class="form-select">
+          <option selected>All Status</option>
+          <option>Active</option>
+          <option>Inactive</option>
+          <option>Banned</option>
+        </select>
+      </div>
+      <div class="col-md-2">
+        <button class="btn btn-outline-secondary w-100"><i class="bi bi-funnel"></i> Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Users Table Section -->
+  <div class="table-section">
+    <!-- Stats Cards -->
+    <div class="row mb-4">
+      <div class="col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon bg-primary">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div class="stat-content">
+            <h6 class="stat-label">Total Users</h6>
+            <h3 class="stat-value">1,245</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon bg-success">
+            <i class="bi bi-check-circle-fill"></i>
+          </div>
+          <div class="stat-content">
+            <h6 class="stat-label">Active</h6>
+            <h3 class="stat-value">1,120</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon bg-warning">
+            <i class="bi bi-exclamation-circle-fill"></i>
+          </div>
+          <div class="stat-content">
+            <h6 class="stat-label">Inactive</h6>
+            <h3 class="stat-value">108</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="stat-card">
+          <div class="stat-icon bg-danger">
+            <i class="bi bi-x-circle-fill"></i>
+          </div>
+          <div class="stat-content">
+            <h6 class="stat-label">Banned</h6>
+            <h3 class="stat-value">17</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Users Table -->
+    <div class="card border-0 shadow-sm">
+      <div class="table-responsive">
+        <table class="table table-hover mb-0">
+          <thead class="table-light border-bottom">
+            <tr>
+              <th class="ps-4" width="5%">
+                <input class="form-check-input" type="checkbox" />
+              </th>
+              <th width="25%">Name</th>
+              <th width="25%">Email</th>
+              <th width="15%">Role</th>
+              <th width="15%">Status</th>
+              <th width="15%">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- User Row 1 -->
+            <tr class="user-row">
+              <td class="ps-4">
+                <input class="form-check-input" type="checkbox" />
+              </td>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar">JD</div>
+                  <div>
+                    <p class="user-name">John Doe</p>
+                    <p class="user-meta">ID: #12345</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="email-text">john.doe@example.com</span>
+              </td>
+              <td>
+                <span class="badge bg-primary">Admin</span>
+              </td>
+              <td>
+                <span class="badge bg-success">Active</span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn btn-sm btn-outline-primary" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" title="View">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- User Row 2 -->
+            <tr class="user-row">
+              <td class="ps-4">
+                <input class="form-check-input" type="checkbox" />
+              </td>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar bg-success">AS</div>
+                  <div>
+                    <p class="user-name">Alice Smith</p>
+                    <p class="user-meta">ID: #12346</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="email-text">alice.smith@example.com</span>
+              </td>
+              <td>
+                <span class="badge bg-info">User</span>
+              </td>
+              <td>
+                <span class="badge bg-success">Active</span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn btn-sm btn-outline-primary" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" title="View">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- User Row 3 -->
+            <tr class="user-row">
+              <td class="ps-4">
+                <input class="form-check-input" type="checkbox" />
+              </td>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar bg-warning">BJ</div>
+                  <div>
+                    <p class="user-name">Bob Johnson</p>
+                    <p class="user-meta">ID: #12347</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="email-text">bob.johnson@example.com</span>
+              </td>
+              <td>
+                <span class="badge bg-secondary">Moderator</span>
+              </td>
+              <td>
+                <span class="badge bg-warning">Inactive</span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn btn-sm btn-outline-primary" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" title="View">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- User Row 4 -->
+            <tr class="user-row">
+              <td class="ps-4">
+                <input class="form-check-input" type="checkbox" />
+              </td>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar bg-info">CM</div>
+                  <div>
+                    <p class="user-name">Carol Martinez</p>
+                    <p class="user-meta">ID: #12348</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="email-text">carol.martinez@example.com</span>
+              </td>
+              <td>
+                <span class="badge bg-info">User</span>
+              </td>
+              <td>
+                <span class="badge bg-success">Active</span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn btn-sm btn-outline-primary" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" title="View">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+
+            <!-- User Row 5 -->
+            <tr class="user-row">
+              <td class="ps-4">
+                <input class="form-check-input" type="checkbox" />
+              </td>
+              <td>
+                <div class="user-info">
+                  <div class="user-avatar bg-danger">DL</div>
+                  <div>
+                    <p class="user-name">David Lee</p>
+                    <p class="user-meta">ID: #12349</p>
+                  </div>
+                </div>
+              </td>
+              <td>
+                <span class="email-text">david.lee@example.com</span>
+              </td>
+              <td>
+                <span class="badge bg-info">User</span>
+              </td>
+              <td>
+                <span class="badge bg-danger">Banned</span>
+              </td>
+              <td>
+                <div class="action-buttons">
+                  <button class="btn btn-sm btn-outline-primary" title="Edit">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-info" title="View">
+                    <i class="bi bi-eye"></i>
+                  </button>
+                  <button class="btn btn-sm btn-outline-danger" title="Delete">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pagination and Footer -->
+    <div class="row align-items-center mt-4">
+      <div class="col-md-6">
+        <p class="text-muted mb-0">
+          Showing <strong>1</strong> to <strong>5</strong> of <strong>1,245</strong> users
+        </p>
+      </div>
+      <div class="col-md-6">
+        <nav aria-label="Page navigation" class="d-flex justify-content-end">
+          <ul class="pagination mb-0">
+            <li class="page-item disabled">
+              <a class="page-link" href="#">Previous</a>
+            </li>
+            <li class="page-item active">
+              <a class="page-link" href="#">1</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">2</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">3</a>
+            </li>
+            <li class="page-item">
+              <a class="page-link" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+</div>

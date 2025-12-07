@@ -1,20 +1,53 @@
-<div class="d-flex">
+<div class="layout-wrapper">
   <!-- SIDEBAR -->
-  <div class="sidebar">
-    <h4 class="text-white text-center mb-4">My Menu</h4>
+  <div class="sidebar" [class.collapsed]="!sidebarOpen()">
+    <!-- Sidebar Header with Toggle Button -->
+    <div class="sidebar-header">
+      <button
+        class="hamburger-btn"
+        (click)="toggleSidebar()"
+        title="Toggle Sidebar"
+        [attr.aria-expanded]="sidebarOpen()"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      @if (sidebarOpen()) {
+      <h4 class="sidebar-title">My Menu</h4>
+      }
+    </div>
 
-    <a href="#">🏠 Dashboard</a>
-    <a href="#">📁 Projects</a>
-    <a href="#">👥 Users</a>
-    <a href="#">⚙️ Settings</a>
-    <a href="#">❓ Help</a>
-    <a href="#">🚪 Logout</a>
+    <!-- Navigation Links -->
+    <nav class="sidebar-nav">
+      <a routerLink="dashboard" title="Dashboard">
+        <span class="icon">🏠</span>
+        <span class="label">Dashboard</span>
+      </a>
+      <a routerLink="users" title="Users">
+        <span class="icon">👥</span>
+        <span class="label">Users</span>
+      </a>
+      <a routerLink="settings" title="Settings">
+        <span class="icon">⚙️</span>
+        <span class="label">Settings</span>
+      </a>
+      <a routerLink="help" title="Help">
+        <span class="icon">❓</span>
+        <span class="label">Help</span>
+      </a>
+      <a href="javascript:void(0);" (click)="Logout()" title="Logout">
+        <span class="icon">🚪</span>
+        <span class="label">Logout</span>
+      </a>
+    </nav>
   </div>
 
   <!-- PAGE CONTENT -->
-  <div class="flex-grow-1 p-4">
-    <h2>Welcome!</h2>
-    <p>This is the main content area.</p>
+  <div class="page-content" [class.sidebar-collapsed]="!sidebarOpen()">
     <router-outlet />
   </div>
+
+  <!-- Overlay for mobile (only visible on small screens) -->
+  <div class="sidebar-overlay" [class.show]="!sidebarOpen()" (click)="toggleSidebar()"></div>
 </div>

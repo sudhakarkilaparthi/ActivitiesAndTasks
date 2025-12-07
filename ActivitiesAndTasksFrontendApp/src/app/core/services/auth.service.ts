@@ -12,13 +12,12 @@ import { ApiBaseResponse } from '../models/common.model';
 export class AuthService {
   constructor(private api: ApiService, private storage: StorageService) {}
 
-  login(payload: LoginRequest): Observable<LoginResponse> {
+  login(payload: LoginRequest): Observable<ApiBaseResponse<LoginResponse>> {
     // debugger;
-    return this.api.post<LoginResponse>(API_ENDPOINTS.AUTH.LOGIN, payload).pipe(
+    return this.api.post<ApiBaseResponse<LoginResponse>>(API_ENDPOINTS.AUTH.LOGIN, payload).pipe(
       tap((res) => {
         console.log('Login response:', res);
-        //debugger;
-        this.storage.setToken(res.token);
+        this.storage.setToken(res.data?.token || '');
       }),
       catchError((error) => {
         // debugger;

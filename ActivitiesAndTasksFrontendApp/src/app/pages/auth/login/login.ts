@@ -35,6 +35,7 @@ export class Login implements OnInit {
   ngOnInit(): void {
     // Get return URL from route parameters or default to '/'
     this.returnUrl.set(this.route.snapshot.queryParams['returnUrl'] || '/dashboard');
+    this.authService.logout(); // Ensure logged out on accessing login page
   }
 
   private initializeForm(): void {

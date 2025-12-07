@@ -1,1 +1,75 @@
-<p>not-found works!</p>
+<div class="not-found-wrapper">
+  <div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="row w-100">
+      <div class="col-lg-6 mx-auto">
+        <div class="not-found-container">
+          <!-- 404 Error Code -->
+          <div class="error-code-section">
+            <span class="error-code">404</span>
+          </div>
+
+          <!-- Error Title -->
+          <h1 class="error-title">Page Not Found</h1>
+          <p class="error-subtitle">
+            Sorry, the page you are looking for doesn't exist or has been moved.
+          </p>
+
+          <!-- Illustration -->
+          <div class="illustration-container">
+            <svg
+              class="error-illustration"
+              viewBox="0 0 200 200"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="grad404" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color: #667eea; stop-opacity: 1" />
+                  <stop offset="100%" style="stop-color: #764ba2; stop-opacity: 1" />
+                </linearGradient>
+              </defs>
+              <!-- Background circle -->
+              <circle cx="100" cy="100" r="90" fill="url(#grad404)" opacity="0.1" />
+              <!-- Question mark -->
+              <g transform="translate(100, 100)">
+                <text
+                  x="0"
+                  y="40"
+                  font-size="80"
+                  font-weight="bold"
+                  fill="url(#grad404)"
+                  text-anchor="middle"
+                  dy=".3em"
+                >
+                  ?
+                </text>
+              </g>
+              <!-- Decorative elements -->
+              <circle cx="40" cy="50" r="8" fill="#667eea" opacity="0.3" />
+              <circle cx="160" cy="150" r="6" fill="#764ba2" opacity="0.3" />
+              <circle cx="30" cy="150" r="5" fill="#667eea" opacity="0.2" />
+              <circle cx="170" cy="60" r="7" fill="#764ba2" opacity="0.25" />
+            </svg>
+          </div>
+
+          <!-- Action Buttons -->
+          <div class="action-buttons">
+            <a href="/dashboard" class="btn btn-primary btn-lg"> Go to Dashboard </a>
+            <a href="/" class="btn btn-outline-secondary btn-lg"> Go Home </a>
+          </div>
+
+          <!-- Helpful Links -->
+          <div class="helpful-section">
+            <p class="helpful-title">Need Help?</p>
+            <div class="helpful-links">
+              <a href="#" class="help-link">Contact Support</a>
+              <span class="separator">•</span>
+              <a href="#" class="help-link">Report Issue</a>
+              <span class="separator">•</span>
+              <a href="#" class="help-link">FAQs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,18 +1,259 @@
+/* Layout Wrapper */
+.layout-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
 /* Sidebar styling */
 .sidebar {
-        width: 250px;
-        height: 100vh;
-        background-color: #343a40;
-        padding-top: 20px;
+  width: 250px;
+  height: 100vh;
+  background-color: #343a40;
+  position: fixed;
+  left: 0;
+  top: 0;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: width 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.sidebar-title {
+  color: white;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  flex: 1;
+}
+
+/* Hamburger Button in Sidebar */
+.hamburger-btn {
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  padding: 0;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.hamburger-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.hamburger-btn span {
+  width: 20px;
+  height: 2.5px;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 5px;
+  padding: 10px;
 }
 
 .sidebar a {
-        color: #ffffff;
-        padding: 12px 20px;
-        display: block;
-        text-decoration: none;
+  color: #ffffff;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-left: 3px solid transparent;
+  border-radius: 4px;
+}
+
+.sidebar a .icon {
+  font-size: 1.25rem;
+  min-width: 25px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.sidebar a .label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar.collapsed a {
+  justify-content: center;
+  padding: 12px 0;
+  gap: 0;
+}
+
+.sidebar.collapsed a .label {
+  display: none;
+}
+
+.sidebar.collapsed a .icon {
+  font-size: 1.5rem;
 }
 
 .sidebar a:hover {
-        background-color: #495057;
+  background-color: #495057;
+  border-left-color: #0d6efd;
+  padding-left: 12px;
+}
+
+.sidebar.collapsed a:hover {
+  background-color: #495057;
+  border-left-color: transparent;
+  padding-left: 15px;
+}
+
+/* Page Content */
+.page-content {
+  flex: 1;
+  margin-left: 250px;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: #f8f9fa;
+  transition: margin-left 0.3s ease;
+  position: relative;
+}
+
+.page-content.sidebar-collapsed {
+  margin-left: 80px;
+}
+
+/* Scrollbar styling for page content */
+.page-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.page-content::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.page-content::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 4px;
+}
+
+.page-content::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+/* Sidebar Overlay - Hidden by default */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.sidebar-overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hide overlay on desktop */
+@media (min-width: 769px) {
+  .sidebar-overlay {
+    display: none;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .sidebar.collapsed {
+    width: 70px;
+  }
+
+  .page-content {
+    margin-left: 200px;
+  }
+
+  .page-content.sidebar-collapsed {
+    margin-left: 70px;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout-wrapper {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    transform: translateX(-250px);
+    z-index: 1002;
+  }
+
+  .sidebar:not(.collapsed) {
+    transform: translateX(0);
+  }
+
+  .page-content {
+    margin-left: 0;
+  }
+
+  .sidebar-title {
+    display: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    padding-top: 5px;
+  }
+
+  .sidebar a {
+    padding: 8px 10px;
+    font-size: 0.85rem;
+  }
 }

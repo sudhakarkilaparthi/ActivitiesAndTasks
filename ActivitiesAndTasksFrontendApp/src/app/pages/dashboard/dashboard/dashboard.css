@@ -1,0 +1,523 @@
+/* Dashboard Container */
+.dashboard-container {
+  padding: 2rem;
+  background-color: #f8f9fa;
+  min-height: 100vh;
+}
+
+/* Welcome Section */
+.welcome-section {
+  animation: slideDown 0.6s ease-out;
+}
+
+.welcome-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+.welcome-subtitle {
+  font-size: 1rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+/* Metrics Section */
+.metrics-section {
+  animation: slideUp 0.6s ease-out 0.1s both;
+}
+
+.metric-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.metric-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.metric-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.metric-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.metric-icon {
+  width: 45px;
+  height: 45px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.5rem;
+}
+
+.metric-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212529;
+  margin: 0.5rem 0 0.75rem 0;
+}
+
+.metric-change {
+  font-size: 0.85rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.metric-change.positive {
+  color: #28a745;
+}
+
+.metric-change.neutral {
+  color: #ffc107;
+}
+
+.metric-change.negative {
+  color: #dc3545;
+}
+
+/* Cards */
+.card {
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.card-header {
+  background-color: white;
+  padding: 1.25rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #212529;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+/* Chart */
+.chart-placeholder {
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.chart-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+}
+
+.bar {
+  transition: fill 0.3s ease;
+  opacity: 0.8;
+}
+
+.bar:hover {
+  opacity: 1;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+/* Progress Section */
+.progress-section {
+  text-align: center;
+}
+
+.progress-circle {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 2rem;
+  position: relative;
+}
+
+.progress-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.progress-ring {
+  transition: stroke-dasharray 0.5s ease;
+}
+
+.progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+.progress-label {
+  display: block;
+  font-size: 0.85rem;
+  color: #6c757d;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.progress-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.progress-stat {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin-bottom: 0.5rem;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #212529;
+}
+
+/* Tasks Table */
+.table {
+  font-size: 0.95rem;
+}
+
+.table tbody tr {
+  border-color: #f0f0f0;
+  transition: background-color 0.2s ease;
+}
+
+.task-row:hover {
+  background-color: #f8f9fa;
+}
+
+.task-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.task-title {
+  font-weight: 600;
+  color: #212529;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.task-meta {
+  font-size: 0.8rem;
+  color: #999;
+  margin: 0;
+}
+
+.badge {
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 12px;
+}
+
+/* Team Members */
+.team-members {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.team-member {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.team-member:hover {
+  background-color: #e9ecef;
+}
+
+.member-avatar {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.member-avatar.bg-success {
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+}
+
+.member-avatar.bg-warning {
+  background: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+}
+
+.member-info {
+  flex: 1;
+}
+
+.member-name {
+  font-weight: 600;
+  color: #212529;
+  margin: 0 0 0.25rem 0;
+  font-size: 0.95rem;
+}
+
+.member-role {
+  font-size: 0.8rem;
+  color: #6c757d;
+  margin: 0;
+}
+
+.status-badge {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-badge.online {
+  background-color: #28a745;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.status-badge.offline {
+  background-color: #999;
+}
+
+/* Activity Feed */
+.activity-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.activity-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.activity-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.activity-content {
+  flex: 1;
+}
+
+.activity-text {
+  margin: 0 0 0.25rem 0;
+  color: #212529;
+  font-size: 0.95rem;
+}
+
+.activity-text strong {
+  font-weight: 600;
+}
+
+.activity-time {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #999;
+}
+
+/* Animations */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 1rem;
+  }
+
+  .welcome-title {
+    font-size: 1.75rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.9rem;
+  }
+
+  .metric-value {
+    font-size: 1.5rem;
+  }
+
+  .card-body {
+    padding: 1rem;
+  }
+
+  .progress-circle {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 1.5rem;
+  }
+
+  .progress-value {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-container {
+    padding: 0.75rem;
+  }
+
+  .welcome-title {
+    font-size: 1.5rem;
+  }
+
+  .welcome-subtitle {
+    font-size: 0.85rem;
+  }
+
+  .metric-card {
+    padding: 1rem;
+  }
+
+  .metric-value {
+    font-size: 1.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.75rem;
+  }
+
+  .metric-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+
+  .card-header {
+    padding: 1rem;
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .task-title {
+    font-size: 0.85rem;
+  }
+
+  .task-meta {
+    font-size: 0.75rem;
+  }
+
+  .team-member {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  .member-avatar {
+    width: 40px;
+    height: 40px;
+    font-size: 0.8rem;
+  }
+
+  .member-name {
+    font-size: 0.85rem;
+  }
+
+  .member-role {
+    font-size: 0.75rem;
+  }
+
+  .activity-icon {
+    width: 36px;
+    height: 36px;
+    font-size: 0.9rem;
+  }
+
+  .activity-text {
+    font-size: 0.85rem;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
