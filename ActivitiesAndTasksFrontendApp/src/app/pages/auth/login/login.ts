@@ -76,7 +76,7 @@ export class Login implements OnInit {
         // Redirect to return URL or dashboard
         setTimeout(() => {
           this.router.navigate([this.returnUrl()]);
-        }, 500);
+        }, 10);
       },
       error: (error) => {
         // debugger;

@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.storage.clearToken();
+    this.storage.clearAll();
   }
 
   isLoggedIn(): boolean {
