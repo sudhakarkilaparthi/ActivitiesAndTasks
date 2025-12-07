@@ -17,7 +17,10 @@ export class AuthService {
     return this.api.post<ApiBaseResponse<LoginResponse>>(API_ENDPOINTS.AUTH.LOGIN, payload).pipe(
       tap((res) => {
         console.log('Login response:', res);
-        this.storage.setToken(res.data?.token || '');
+        this.storage.setToken(res.data?.tokenInfo.token || '');
+        this.storage.setTokenExpiryTime(res.data?.tokenInfo.expiresAt || '');
+
+        //console.log('ISO time:', new Date().toISOString());
       }),
       catchError((error) => {
         // debugger;
@@ -27,10 +30,10 @@ export class AuthService {
     );
   }
 
-  register(payload: any): Observable<LoginResponse> {
-    return this.api.post<LoginResponse>(API_ENDPOINTS.AUTH.REGISTER, payload).pipe(
+  register(payload: any): Observable<ApiBaseResponse<LoginResponse>> {
+    return this.api.post<ApiBaseResponse<LoginResponse>>(API_ENDPOINTS.AUTH.REGISTER, payload).pipe(
       tap((res) => {
-        this.storage.setToken(res.token);
+        this.storage.setToken(res.data?.tokenInfo.token || '');
       })
     );
   }

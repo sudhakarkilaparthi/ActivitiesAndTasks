@@ -1,16 +1,20 @@
+import { User } from './user.model';
+
 export interface LoginRequest {
   email: string;
   password: string;
 }
 
-export interface LoginResponse {
-  expiresAt: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  role: string;
+export interface TokenInfo {
   token: string;
+  expiresAt: string;
 }
+
+export interface LoginResponse {
+  tokenInfo: TokenInfo;
+  userInfo: User;
+}
+
 export interface RegisterRequest {
   userName: string;
   email: string;

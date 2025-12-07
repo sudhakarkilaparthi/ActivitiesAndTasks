@@ -6,6 +6,7 @@ namespace ActivitiesAndTasksAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Attributes.ConditionalAuthorize]
     public class UsersController : ControllerBase
     {
 		private readonly UserModel _userModel;

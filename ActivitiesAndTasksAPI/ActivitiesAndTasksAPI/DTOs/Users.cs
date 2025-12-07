@@ -7,20 +7,20 @@ namespace ActivitiesAndTasksAPI.DTOs
 	public class User
 	{
 		//[JsonPropertyName("UserId")]
-		public required int UserId { get; set; }
+		public int UserId { get; set; }
 
 		//[JsonPropertyName("FirstName")]
-		public required string FirstName { get; set; }
+		public string FirstName { get; set; } = string.Empty;
 
 		//[JsonPropertyName("LastName")]
-		public required string LastName { get; set; }
+		public string LastName { get; set; } = string.Empty;
 
 		//[JsonPropertyName("Email")]
-		public required string Email { get; set; }
+		public string Email { get; set; } = string.Empty;
 		//public required string Password { get; set; }
 
-		public string Token { get; set; } = string.Empty;
-		public string ExpiresAt { get; set; } = string.Empty;
+		//public string Token { get; set; } = string.Empty;
+		//public string ExpiresAt { get; set; } = string.Empty;
 		public string Role { get; set; } = string.Empty;
 
 
