@@ -21,10 +21,13 @@ namespace ActivitiesAndTasksAPI.DTOs
 
 		//public string Token { get; set; } = string.Empty;
 		//public string ExpiresAt { get; set; } = string.Empty;
-		public string Role { get; set; } = string.Empty;
+		public int RoleId { get; set; }
+		public string RoleName { get; set; } = string.Empty;
+        public bool IsActive { get; set; }
+        public DateTime CreatedOn { get; set; }
 
 
-	}
+    }
 
 	public class AddUserDto
 	{

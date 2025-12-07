@@ -93,13 +93,7 @@ namespace ActivitiesAndTasksAPI.Repositories
 			// Read only the FIRST ROW
 			if (await reader.ReadAsync())
 			{
-				return new User
-				{
-					UserId = reader.DDRGetInt32("UserId"),
-					FirstName = reader.DDRGetString("FirstName"),
-					LastName = reader.DDRGetString("LastName"),
-					Email = reader.DDRGetString("Email")
-				};
+				return MapUser(reader);
 			}
 
 			return null;
@@ -112,7 +106,11 @@ namespace ActivitiesAndTasksAPI.Repositories
 				UserId = reader.DDRGetInt32("UserId"),
 				FirstName = reader.DDRGetString("FirstName"),
 				LastName = reader.DDRGetString("LastName"),
-				Email = reader.DDRGetString("Email")
+				Email = reader.DDRGetString("Email"),
+				RoleId = reader.DDRGetInt32("RoleId"),
+				RoleName = reader.DDRGetString("RoleName"),
+				IsActive = reader.DDRGetBoolean("IsActive"),
+				CreatedOn = reader.DDRGetDateTime("CreatedOn")
 			};
 		}
 

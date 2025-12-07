@@ -45,6 +45,8 @@ export class StorageService {
   }
 
   isLoggedIn(): boolean {
+    // return !!this.getToken();
+
     const token = this.getToken();
     const expiryTime = this.getTokenExpiryTime();
 

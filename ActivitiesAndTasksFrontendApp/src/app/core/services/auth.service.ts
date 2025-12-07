@@ -19,6 +19,7 @@ export class AuthService {
         console.log('Login response:', res);
         this.storage.setToken(res.data?.tokenInfo.token || '');
         this.storage.setTokenExpiryTime(res.data?.tokenInfo.expiresAt || '');
+        this.storage.setUserDetails(res.data?.userInfo as any);
 
         //console.log('ISO time:', new Date().toISOString());
       }),

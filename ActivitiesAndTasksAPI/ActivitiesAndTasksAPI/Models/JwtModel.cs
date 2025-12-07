@@ -52,9 +52,14 @@ namespace ActivitiesAndTasksAPI.Models
 				jwtInfo.Token = tokenString;
 				jwtInfo.ExpiresAt = tokenDescriptor.Expires?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? string.Empty; //yyyy-MM-ddTHH:mm:ssZ
 			}
-			
+			else
+			{
+				jwtInfo.Token = "JWT_Disabled_So_Temporary_Dummy_JWT";
+				jwtInfo.ExpiresAt = DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? string.Empty; //yyyy-MM-ddTHH:mm:ssZ
+			}
 
-			return jwtInfo;
+
+				return jwtInfo;
 		}
 
 		// Create a new token for an authenticated principal and extend expiry
