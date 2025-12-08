@@ -9,7 +9,7 @@ namespace ActivitiesAndTasksAPI.DTOs
         public bool Enabled { get; set; } = true;
     }
 
-    public class JwtInfo 
+    public class JwtInfo
     {
         public string Token { get; set; } = string.Empty;
         public string ExpiresAt { get; set; } = string.Empty;

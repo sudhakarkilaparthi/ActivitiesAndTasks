@@ -3,39 +3,39 @@
 namespace ActivitiesAndTasksAPI.Enums
 {
     public enum SPs
-	{
-		#region User
+    {
+        #region User
 
-		/// <summary>
-		/// Fetch All Users.
-		/// </summary>
-		[StringValue("sp_GetAllUsers")]
-		spGetAllUsers,
+        /// <summary>
+        /// Fetch All Users.
+        /// </summary>
+        [StringValue("sp_GetAllUsers")]
+        spGetAllUsers,
 
-		/// <summary>
-		/// Create a User.
-		/// </summary>
-		[StringValue("sp_CreateUser")]
-		spCreateUser,
+        /// <summary>
+        /// Create a User.
+        /// </summary>
+        [StringValue("sp_CreateUser")]
+        spCreateUser,
 
-		/// <summary>
-		/// Get User by email
-		/// </summary>
-		[StringValue("sp_GetUserByEmail")]
-		spGetUserByEmail,
+        /// <summary>
+        /// Get User by email
+        /// </summary>
+        [StringValue("sp_GetUserByEmail")]
+        spGetUserByEmail,
 
-		#endregion
+        #endregion
 
-		#region Auth
+        #region Auth
 
-		/// <summary>
-		/// Login user by email and password.
-		/// </summary>
-		[StringValue("sp_UserLogin")]
-		spUserLogin,
+        /// <summary>
+        /// Login user by email and password.
+        /// </summary>
+        [StringValue("sp_UserLogin")]
+        spUserLogin,
 
-		
 
-		#endregion
-	}
+
+        #endregion
+    }
 }

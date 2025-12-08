@@ -3,103 +3,103 @@ using System.Text.Json.Serialization;
 
 namespace ActivitiesAndTasksAPI.DTOs
 {
-    
-	public class User
-	{
-		//[JsonPropertyName("UserId")]
-		public int UserId { get; set; }
 
-		//[JsonPropertyName("FirstName")]
-		public string FirstName { get; set; } = string.Empty;
+    public class User
+    {
+        //[JsonPropertyName("UserId")]
+        public int UserId { get; set; }
 
-		//[JsonPropertyName("LastName")]
-		public string LastName { get; set; } = string.Empty;
+        //[JsonPropertyName("FirstName")]
+        public string FirstName { get; set; } = string.Empty;
 
-		//[JsonPropertyName("Email")]
-		public string Email { get; set; } = string.Empty;
-		//public required string Password { get; set; }
+        //[JsonPropertyName("LastName")]
+        public string LastName { get; set; } = string.Empty;
 
-		//public string Token { get; set; } = string.Empty;
-		//public string ExpiresAt { get; set; } = string.Empty;
-		public int RoleId { get; set; }
-		public string RoleName { get; set; } = string.Empty;
+        //[JsonPropertyName("Email")]
+        public string Email { get; set; } = string.Empty;
+        //public required string Password { get; set; }
+
+        //public string Token { get; set; } = string.Empty;
+        //public string ExpiresAt { get; set; } = string.Empty;
+        public int RoleId { get; set; }
+        public string RoleName { get; set; } = string.Empty;
         public bool IsActive { get; set; }
         public DateTime CreatedOn { get; set; }
 
 
     }
 
-	public class AddUserDto
-	{
-		[JsonPropertyName("FirstName")]
-		public required string FirstName { get; set; }
-		[JsonPropertyName("LastName")]
-		public string LastName { get; set; } = string.Empty;
-
-		[JsonPropertyName("Phone")]
-		public string Phone { get; set; } = string.Empty;
-
-		[Required(ErrorMessage = "Email is required")]
-		[EmailAddress(ErrorMessage = "Email format is not valid")]
-		[JsonPropertyName("Email")]
-		public required string Email { get; set; }
-
-		[Required(ErrorMessage = "Password is required")]
-		[JsonPropertyName("Password")]
-		public required string Password { get; set; }
-
-		[JsonPropertyName("IsActive")]
-		public int IsActive { get; set; }
-	}
-
-
-	public class UpdateUserDto
-	{
-
-		[Required(ErrorMessage = "First Name is required")]
-		[JsonPropertyName("FirstName")]
-		public required string FirstName { get; set; }
-
-		[Required(ErrorMessage = "Last Name is required")]
-		[JsonPropertyName("LastName")]
-		public required string LastName { get; set; }
-
-		[Required(ErrorMessage = "Email is required")]
-		[EmailAddress(ErrorMessage = "Email format is not valid")]
-		[JsonPropertyName("Email")]
-		public required string Email { get; set; }
-
-		[Required(ErrorMessage = "Password is required")]
-		[JsonPropertyName("Password")]
-		public required string Password { get; set; }
-	}
-
-	public class LoginDto
-	{
-		[Required(ErrorMessage = "Email is required")]
-		[EmailAddress(ErrorMessage = "Email format is not valid")]
-		[JsonPropertyName("email")]
-		public required string Email { get; set; }
-
-		[Required(ErrorMessage = "Password is required")]
-		[JsonPropertyName("password")]
-		public required string Password { get; set; }
-	}
-
-    public class  GoogleLoginRequest
+    public class AddUserDto
     {
-		[Required(ErrorMessage = "Google Token is required")]
-		public required string IdToken { get; set; }
+        [JsonPropertyName("FirstName")]
+        public required string FirstName { get; set; }
+        [JsonPropertyName("LastName")]
+        public string LastName { get; set; } = string.Empty;
+
+        [JsonPropertyName("Phone")]
+        public string Phone { get; set; } = string.Empty;
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Email format is not valid")]
+        [JsonPropertyName("Email")]
+        public required string Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [JsonPropertyName("Password")]
+        public required string Password { get; set; }
+
+        [JsonPropertyName("IsActive")]
+        public int IsActive { get; set; }
+    }
+
+
+    public class UpdateUserDto
+    {
+
+        [Required(ErrorMessage = "First Name is required")]
+        [JsonPropertyName("FirstName")]
+        public required string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Last Name is required")]
+        [JsonPropertyName("LastName")]
+        public required string LastName { get; set; }
+
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Email format is not valid")]
+        [JsonPropertyName("Email")]
+        public required string Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [JsonPropertyName("Password")]
+        public required string Password { get; set; }
+    }
+
+    public class LoginDto
+    {
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Email format is not valid")]
+        [JsonPropertyName("email")]
+        public required string Email { get; set; }
+
+        [Required(ErrorMessage = "Password is required")]
+        [JsonPropertyName("password")]
+        public required string Password { get; set; }
+    }
+
+    public class GoogleLoginRequest
+    {
+        [Required(ErrorMessage = "Google Token is required")]
+        public required string IdToken { get; set; }
     }
 
 
     public class GoogleLoginResponse
-	{
+    {
         public string GoogleUserId { get; set; } = string.Empty;
-		public string Email { get; set; } = string.Empty;
-		public string Name { get; set; } = string.Empty;
-		public string GivenName { get; set; } = string.Empty;
-		public string FamilyName { get; set; } = string.Empty;
+        public string Email { get; set; } = string.Empty;
+        public string Name { get; set; } = string.Empty;
+        public string GivenName { get; set; } = string.Empty;
+        public string FamilyName { get; set; } = string.Empty;
         public string Picture { get; set; } = string.Empty;
         public bool EmailVerified { get; set; } = false;
         public int ExpirationTimeSeconds { get; set; }
@@ -108,18 +108,18 @@ namespace ActivitiesAndTasksAPI.DTOs
         public int NotBeforeTimeSeconds { get; set; }
         public string Issuer { get; set; } = string.Empty;
         public string Audience { get; set; } = string.Empty;
-	}
+    }
 
 
     public class RegisterDto
-	{
-		[Required(ErrorMessage = "Email is required")]
-		[EmailAddress(ErrorMessage = "Email format is not valid")]
-		[JsonPropertyName("Email")]
-		public required string Email { get; set; }
+    {
+        [Required(ErrorMessage = "Email is required")]
+        [EmailAddress(ErrorMessage = "Email format is not valid")]
+        [JsonPropertyName("Email")]
+        public required string Email { get; set; }
 
-		[Required(ErrorMessage = "Password is required")]
-		[JsonPropertyName("Password")]
-		public required string Password { get; set; }
-	}
+        [Required(ErrorMessage = "Password is required")]
+        [JsonPropertyName("Password")]
+        public required string Password { get; set; }
+    }
 }

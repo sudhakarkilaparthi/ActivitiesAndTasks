@@ -4,6 +4,6 @@ namespace ActivitiesAndTasksAPI.Interfaces
 {
     public interface IGoogleTokenValidator
     {
-		Task<GoogleJsonWebSignature.Payload?> ValidateAsync(string idToken);
-	}
+        Task<GoogleJsonWebSignature.Payload?> ValidateAsync(string idToken);
+    }
 }

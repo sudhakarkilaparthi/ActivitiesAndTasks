@@ -9,59 +9,59 @@ namespace ActivitiesAndTasksAPI.Controllers
     [Attributes.ConditionalAuthorize]
     public class UsersController : ControllerBase
     {
-		private readonly UserModel _userModel;
-		public UsersController(UserModel userModel)
+        private readonly UserModel _userModel;
+        public UsersController(UserModel userModel)
         {
             _userModel = userModel;
         }
 
-		// GET: api/students
-		[HttpGet]
-		public async Task<IActionResult> GetAll()
-		{
+        // GET: api/students
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
 
-			var users = await _userModel.GetAllUsersAsync();
-
-
-			return Ok(users);
-		}
+            var users = await _userModel.GetAllUsersAsync();
 
 
-		// GET: api/students/5
-		[HttpGet("{id:int}")]
-		public async Task<IActionResult> GetById(int id)
-		{
-			
-			return Ok();
-		}
-
-		// POST: api/students
-		[HttpPost]
-		public async Task<IActionResult> Create([FromBody] AddUserDto input)
-		{
-
-			var newUserId = await _userModel.CreateUserAsync(input);
-			return Ok(newUserId);
-		}
-
-		// PUT: api/students/5
-		[HttpPut("{id:int}")]
-		public async Task<IActionResult> Update(int id, [FromBody] UpdateUserDto input)
-		{
-			
-			return NoContent();
-		}
+            return Ok(users);
+        }
 
 
-		// DELETE: api/students/5
-		[HttpDelete("{id:int}")]
-		public async Task<IActionResult> Delete(int id)
-		{
-			var result = true;
-			if (!result)
-				return NotFound();
+        // GET: api/students/5
+        [HttpGet("{id:int}")]
+        public async Task<IActionResult> GetById(int id)
+        {
 
-			return NoContent();
-		}
-	}
+            return Ok();
+        }
+
+        // POST: api/students
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] AddUserDto input)
+        {
+
+            var newUserId = await _userModel.CreateUserAsync(input);
+            return Ok(newUserId);
+        }
+
+        // PUT: api/students/5
+        [HttpPut("{id:int}")]
+        public async Task<IActionResult> Update(int id, [FromBody] UpdateUserDto input)
+        {
+
+            return NoContent();
+        }
+
+
+        // DELETE: api/students/5
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = true;
+            if (!result)
+                return NotFound();
+
+            return NoContent();
+        }
+    }
 }

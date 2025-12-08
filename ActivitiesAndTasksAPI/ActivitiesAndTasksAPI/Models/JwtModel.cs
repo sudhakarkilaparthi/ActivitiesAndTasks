@@ -10,83 +10,83 @@ namespace ActivitiesAndTasksAPI.Models
     public class JwtModel
     {
 
-		private readonly IOptionsMonitor<JwtSettings> _jwtOptionsMonitor;
-		public JwtModel(IOptionsMonitor<JwtSettings> jwtOptionsMonitor)
+        private readonly IOptionsMonitor<JwtSettings> _jwtOptionsMonitor;
+        public JwtModel(IOptionsMonitor<JwtSettings> jwtOptionsMonitor)
         {
-			_jwtOptionsMonitor = jwtOptionsMonitor;
-		}
+            _jwtOptionsMonitor = jwtOptionsMonitor;
+        }
 
 
         public JwtInfo generateToken(User user)
         {
-			
-			JwtInfo jwtInfo = new JwtInfo();
 
-			// create claims
-			var claims = new List<Claim>
-			{
-				new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
-				new Claim(ClaimTypes.Name, user.FirstName ?? string.Empty),
-				new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
-			};
+            JwtInfo jwtInfo = new JwtInfo();
 
-			var _jwtSettings = _jwtOptionsMonitor.CurrentValue;
-			if (_jwtSettings.Enabled)
-			{
-				var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
-				var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+            // create claims
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, user.UserId.ToString()),
+                new Claim(ClaimTypes.Name, user.FirstName ?? string.Empty),
+                new Claim(ClaimTypes.Email, user.Email ?? string.Empty),
+            };
 
-				var tokenHandler = new JwtSecurityTokenHandler();
-				var tokenDescriptor = new SecurityTokenDescriptor
-				{
-					Subject = new ClaimsIdentity(claims),
-					Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.DurationMinutes),
-					Issuer = _jwtSettings.Issuer,
-					Audience = _jwtSettings.Audience,
-					SigningCredentials = creds
-				};
+            var _jwtSettings = _jwtOptionsMonitor.CurrentValue;
+            if (_jwtSettings.Enabled)
+            {
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtSettings.Key));
+                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
-				var token = tokenHandler.CreateToken(tokenDescriptor);
-				var tokenString = tokenHandler.WriteToken(token);
+                var tokenHandler = new JwtSecurityTokenHandler();
+                var tokenDescriptor = new SecurityTokenDescriptor
+                {
+                    Subject = new ClaimsIdentity(claims),
+                    Expires = DateTime.UtcNow.AddMinutes(_jwtSettings.DurationMinutes),
+                    Issuer = _jwtSettings.Issuer,
+                    Audience = _jwtSettings.Audience,
+                    SigningCredentials = creds
+                };
 
-				jwtInfo.Token = tokenString;
-				jwtInfo.ExpiresAt = tokenDescriptor.Expires?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? string.Empty; //yyyy-MM-ddTHH:mm:ssZ
-			}
-			else
-			{
-				jwtInfo.Token = "JWT_Disabled_So_Temporary_Dummy_JWT";
-				jwtInfo.ExpiresAt = DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? string.Empty; //yyyy-MM-ddTHH:mm:ssZ
-			}
+                var token = tokenHandler.CreateToken(tokenDescriptor);
+                var tokenString = tokenHandler.WriteToken(token);
+
+                jwtInfo.Token = tokenString;
+                jwtInfo.ExpiresAt = tokenDescriptor.Expires?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? string.Empty; //yyyy-MM-ddTHH:mm:ssZ
+            }
+            else
+            {
+                jwtInfo.Token = "JWT_Disabled_So_Temporary_Dummy_JWT";
+                jwtInfo.ExpiresAt = DateTime.Now.AddDays(1).ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? string.Empty; //yyyy-MM-ddTHH:mm:ssZ
+            }
 
 
-				return jwtInfo;
-		}
+            return jwtInfo;
+        }
 
-		// Create a new token for an authenticated principal and extend expiry
-		public JwtInfo RefreshTokenFromPrincipal(ClaimsPrincipal principal)
-		{
-			if (principal == null || principal.Identity == null || !principal.Identity.IsAuthenticated)
-			{
-				return new JwtInfo();
-				
-			}
+        // Create a new token for an authenticated principal and extend expiry
+        public JwtInfo RefreshTokenFromPrincipal(ClaimsPrincipal principal)
+        {
+            if (principal == null || principal.Identity == null || !principal.Identity.IsAuthenticated)
+            {
+                return new JwtInfo();
 
-			var idClaim = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-			int userId = 0;
-			int.TryParse(idClaim, out userId);
+            }
 
-			var firstName = principal.FindFirst(ClaimTypes.Name)?.Value ?? string.Empty;
-			var email = principal.FindFirst(ClaimTypes.Email)?.Value ?? string.Empty;
+            var idClaim = principal.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            int userId = 0;
+            int.TryParse(idClaim, out userId);
 
-			User user = new User
-			{
-				UserId = userId,
-				FirstName = firstName,
-				LastName = string.Empty,
-				Email = email
-			};
+            var firstName = principal.FindFirst(ClaimTypes.Name)?.Value ?? string.Empty;
+            var email = principal.FindFirst(ClaimTypes.Email)?.Value ?? string.Empty;
 
-			return generateToken(user);
-		}
-	}
+            User user = new User
+            {
+                UserId = userId,
+                FirstName = firstName,
+                LastName = string.Empty,
+                Email = email
+            };
+
+            return generateToken(user);
+        }
+    }
 }

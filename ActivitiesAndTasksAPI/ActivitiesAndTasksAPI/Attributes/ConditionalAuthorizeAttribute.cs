@@ -1,8 +1,8 @@
+using ActivitiesAndTasksAPI.DTOs;
+using ActivitiesAndTasksAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Options;
-using ActivitiesAndTasksAPI.Models;
-using ActivitiesAndTasksAPI.DTOs;
 
 namespace ActivitiesAndTasksAPI.Attributes
 {

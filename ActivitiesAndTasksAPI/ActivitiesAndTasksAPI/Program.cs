@@ -1,26 +1,26 @@
 ﻿using ActivitiesAndTasksAPI.Data;
+using ActivitiesAndTasksAPI.DTOs;
 using ActivitiesAndTasksAPI.Interfaces;
 using ActivitiesAndTasksAPI.Models;
 using ActivitiesAndTasksAPI.Repositories;
-using Microsoft.EntityFrameworkCore;
 // removed Microsoft.OpenApi.Models to avoid missing package issues
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using ActivitiesAndTasksAPI.DTOs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 
 builder.Services.AddCors(options =>
 {
-	options.AddPolicy("AllowAll", policy =>
-	{
-		policy
-			.AllowAnyOrigin()      // Allow all domains
-			.AllowAnyHeader()      // Allow all headers
-			.AllowAnyMethod();     // Allow GET, POST, PUT, DELETE, OPTIONS, etc.
-	});
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()      // Allow all domains
+            .AllowAnyHeader()      // Allow all headers
+            .AllowAnyMethod();     // Allow GET, POST, PUT, DELETE, OPTIONS, etc.
+    });
 });
 
 
