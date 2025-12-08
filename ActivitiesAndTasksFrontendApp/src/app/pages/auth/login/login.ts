@@ -11,6 +11,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../core/models/auth.model';
 import { GoogleSigninButtonComponent } from '../../../shared/components/google-signin-button/google-signin-button';
 import { APP_CONFIGS } from '../../../core/constants/app-configs';
+import { GoogleAuthService } from '../../../core/services/google-auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +20,7 @@ import { APP_CONFIGS } from '../../../core/constants/app-configs';
   styleUrl: './login.css',
 })
 export class Login implements OnInit {
+  private oneTapService = inject(GoogleAuthService);
   private authService = inject(AuthService);
   private router = inject(Router);
   private route = inject(ActivatedRoute);
@@ -35,10 +37,11 @@ export class Login implements OnInit {
     this.initializeForm();
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     // Get return URL from route parameters or default to '/'
     this.returnUrl.set(this.route.snapshot.queryParams['returnUrl'] || '/dashboard');
     this.authService.logout(); // Ensure logged out on accessing login page
+    await this.oneTapService.showOneTapIfNeeded(false);
   }
 
   private initializeForm(): void {

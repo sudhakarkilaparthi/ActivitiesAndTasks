@@ -14,6 +14,8 @@ declare global {
   providedIn: 'root',
 })
 export class GoogleAuthService {
+  private initialized = signal(false);
+
   private authService = inject(AuthService);
   private router = inject(Router);
 
@@ -25,6 +27,45 @@ export class GoogleAuthService {
 
   constructor() {
     this.initializeGoogleAuth();
+  }
+
+  async showOneTapIfNeeded(isLoggedIn: boolean): Promise<void> {
+    if (isLoggedIn) {
+      return; // already have your own JWT, don't show One Tap
+    }
+
+    await this.waitForGoogleLibrary();
+
+    if (this.initialized()) {
+      this.prompt();
+      return;
+    }
+
+    this.initializeGoogleSignIn();
+
+    this.initialized.set(true);
+    this.prompt();
+  }
+
+  private waitForGoogleLibrary(): Promise<void> {
+    return new Promise((resolve) => {
+      const check = () => {
+        if (window.google && window.google.accounts && window.google.accounts.id) {
+          resolve();
+        } else {
+          setTimeout(check, 50);
+        }
+      };
+      check();
+    });
+  }
+
+  private prompt(): void {
+    window.google.accounts.id.prompt((notification: any) => {
+      // You can log reasons why it wasn’t shown, if needed:
+      // console.log(notification.getNotDisplayedReason?.());
+      // console.log(notification.getSkippedReason?.());
+    });
   }
 
   private initializeGoogleAuth(): void {
@@ -44,6 +85,13 @@ export class GoogleAuthService {
       window.google.accounts.id.initialize({
         client_id: this.clientId, // Replace with your Google Client ID
         callback: (response: any) => this.handleCredentialResponse(response),
+        auto_select: true, // if only one Google account, auto select
+        cancel_on_tap_outside: false, // keep UI until user decides
+        context: 'signin', // or 'signup'
+        use_fedcm_for_prompt: false, // optional, for modern browsers
+        // popup flow instead of redirect
+        //ux_mode: 'popup',
+        // if there is exactly one logged-in account, Google may auto-select it
       });
     }
   }
