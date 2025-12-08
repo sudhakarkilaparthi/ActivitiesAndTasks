@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { ApiService } from './api.service';
 import { API_ENDPOINTS } from '../constants/api-endpoints';
-import { LoginRequest, LoginResponse } from '../models/auth.model';
+import {
+  LoginRequest,
+  LoginResponse,
+  GoogleLoginRequest,
+  GoogleLoginRequestOnlyToken,
+} from '../models/auth.model';
 import { StorageService } from './storage.service';
 import { ApiBaseResponse } from '../models/common.model';
 
@@ -37,6 +42,25 @@ export class AuthService {
         this.storage.setToken(res.data?.tokenInfo.token || '');
       })
     );
+  }
+
+  loginWithGoogle(
+    payload: GoogleLoginRequestOnlyToken
+  ): Observable<ApiBaseResponse<LoginResponse>> {
+    return this.api
+      .post<ApiBaseResponse<LoginResponse>>(API_ENDPOINTS.AUTH.GOOGLE_LOGIN, payload)
+      .pipe(
+        tap((res) => {
+          console.log('Google login response:', res);
+          this.storage.setToken(res.data?.tokenInfo.token || '');
+          this.storage.setTokenExpiryTime(res.data?.tokenInfo.expiresAt || '');
+          this.storage.setUserDetails(res.data?.userInfo as any);
+        }),
+        catchError((error) => {
+          console.error('Google login error:', error);
+          throw error;
+        })
+      );
   }
 
   logout(): void {

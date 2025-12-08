@@ -22,6 +22,14 @@ namespace ActivitiesAndTasksAPI.Controllers
 			return ApiResponseHelper.BuildResponse(result, this);
 		}
 
+		[HttpPost("GoogleLogin")]
+		public async Task<IActionResult> GoogleSignIn([FromBody] GoogleLoginRequest input)
+		{
+			ApiReturnResponse result = await _authModel.GoogleLogin(input);
+			return ApiResponseHelper.BuildResponse(result, this);
+		}
+
+
 		[HttpPost("Register")]
 		public async Task<IActionResult> Register([FromBody] RegisterDto input)
 		{

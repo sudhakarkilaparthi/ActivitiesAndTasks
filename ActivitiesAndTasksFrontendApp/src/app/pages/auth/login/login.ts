@@ -9,10 +9,12 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../../core/services/auth.service';
 import { LoginRequest } from '../../../core/models/auth.model';
+import { GoogleSigninButtonComponent } from '../../../shared/components/google-signin-button/google-signin-button';
+import { APP_CONFIGS } from '../../../core/constants/app-configs';
 
 @Component({
   selector: 'app-login',
-  imports: [FormsModule, ReactiveFormsModule],
+  imports: [FormsModule, ReactiveFormsModule, GoogleSigninButtonComponent],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -27,6 +29,7 @@ export class Login implements OnInit {
   errorMessage = signal('');
   successMessage = signal('');
   returnUrl = signal('');
+  googleClientId = APP_CONFIGS.GOOGLE_CLIENT_ID; // '134777556733-no1ggqnpev3rv74t631ih876ul1hqj45.apps.googleusercontent.com'; // Replace with your actual Google Client ID
 
   constructor() {
     this.initializeForm();

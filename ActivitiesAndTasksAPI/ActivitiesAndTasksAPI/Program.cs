@@ -30,6 +30,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 
 // Repos & Services to the container.
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IGoogleTokenValidator, GoogleTokenValidator>();
 builder.Services.AddScoped<UserModel>();
 builder.Services.AddScoped<AuthModel>();
 

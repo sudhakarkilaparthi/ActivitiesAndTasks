@@ -105,6 +105,13 @@
         <small class="text-muted">or</small>
       </div>
 
+      <!-- Google Sign-In Button -->
+      <app-google-signin-button
+        [googleClientId]="googleClientId"
+        buttonContainerId="google-signin-button"
+      ></app-google-signin-button>
+      <div id="google-signin-button"></div>
+
       <!-- Footer Links -->
       <div class="text-center">
         <p class="mb-3">

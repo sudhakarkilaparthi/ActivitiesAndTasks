@@ -20,6 +20,27 @@ export interface RegisterRequest {
   email: string;
   password: string;
 }
+
 export interface RegisterResponse {
   message: string;
+}
+
+export interface GoogleLoginRequestOnlyToken {
+  idToken: string;
+}
+
+export interface GoogleLoginRequest {
+  idToken: string;
+  email?: string;
+  userName?: string;
+  givenName?: string;
+  familyName?: string;
+  picture?: string;
+  locale?: string;
+  emailVerified?: boolean;
+  aud?: string;
+  iss?: string;
+  iat?: number;
+  exp?: number;
+  sub?: string;
 }

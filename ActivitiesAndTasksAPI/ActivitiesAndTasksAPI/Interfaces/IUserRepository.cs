@@ -7,6 +7,7 @@ namespace ActivitiesAndTasksAPI.Interfaces
 		Task<List<User>> GetUsersAsync2();
 		Task<List<User>> GetUsersAsync();
 		Task<User?> GetLogin(LoginDto loginDto);
+		Task<User?> GetUserByEmail(string Email);
 		Task<int> CreateUser(AddUserDto addUserDto);
 
 

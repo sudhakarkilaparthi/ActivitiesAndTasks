@@ -86,7 +86,32 @@ namespace ActivitiesAndTasksAPI.DTOs
 		public required string Password { get; set; }
 	}
 
-	public class RegisterDto
+    public class  GoogleLoginRequest
+    {
+		[Required(ErrorMessage = "Google Token is required")]
+		public required string IdToken { get; set; }
+    }
+
+
+    public class GoogleLoginResponse
+	{
+        public string GoogleUserId { get; set; } = string.Empty;
+		public string Email { get; set; } = string.Empty;
+		public string Name { get; set; } = string.Empty;
+		public string GivenName { get; set; } = string.Empty;
+		public string FamilyName { get; set; } = string.Empty;
+        public string Picture { get; set; } = string.Empty;
+        public bool EmailVerified { get; set; } = false;
+        public int ExpirationTimeSeconds { get; set; }
+        public int IssuedAtTimeSeconds { get; set; }
+        public string JwtId { get; set; } = string.Empty;
+        public int NotBeforeTimeSeconds { get; set; }
+        public string Issuer { get; set; } = string.Empty;
+        public string Audience { get; set; } = string.Empty;
+	}
+
+
+    public class RegisterDto
 	{
 		[Required(ErrorMessage = "Email is required")]
 		[EmailAddress(ErrorMessage = "Email format is not valid")]

@@ -18,15 +18,23 @@ namespace ActivitiesAndTasksAPI.Enums
 		[StringValue("sp_CreateUser")]
 		spCreateUser,
 
+		/// <summary>
+		/// Get User by email
+		/// </summary>
+		[StringValue("sp_GetUserByEmail")]
+		spGetUserByEmail,
+
 		#endregion
 
 		#region Auth
 
 		/// <summary>
-		/// Create a User.
+		/// Login user by email and password.
 		/// </summary>
 		[StringValue("sp_UserLogin")]
 		spUserLogin,
+
+		
 
 		#endregion
 	}

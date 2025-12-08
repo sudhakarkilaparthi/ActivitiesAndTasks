@@ -99,6 +99,26 @@ namespace ActivitiesAndTasksAPI.Repositories
 			return null;
 		}
 
+
+
+		public async Task<User?> GetUserByEmail(string Email)
+		{
+			List<SqlParameter> parameters = new List<SqlParameter>
+			{
+				new SqlParameter("@Email", Email),
+			};
+
+			using DbDataReader reader = await _dbContext.DbExecuteReaderAsync(SPs.spGetUserByEmail, parameters);
+
+			// Read only the FIRST ROW
+			if (await reader.ReadAsync())
+			{
+				return MapUser(reader);
+			}
+
+			return null;
+		}
+
 		private User MapUser(DbDataReader reader)
 		{
 			return new User
@@ -114,6 +134,5 @@ namespace ActivitiesAndTasksAPI.Repositories
 			};
 		}
 
-       
     }
 }

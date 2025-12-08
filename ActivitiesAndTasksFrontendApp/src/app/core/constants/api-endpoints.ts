@@ -2,6 +2,7 @@ export const API_ENDPOINTS = {
   AUTH: {
     LOGIN: '/Auth/Login', // POST /api/Auth/login
     REGISTER: '/Auth/Register', // POST /api/Auth/register
+    GOOGLE_LOGIN: '/Auth/GoogleLogin', // POST /api/Auth/GoogleLogin
   },
 
   USERS: {
