@@ -1,0 +1,22 @@
+<div class="notifications-container">
+  @for (note of (service.alerts | async); track note.id) {
+  <div
+    class="notification"
+    [class]="note.type"
+    (animate.enter)="animateEnterFn(note.id)"
+    animate.enter="enter-animation"
+    animate.leave="leaving"
+  >
+    <div class="notification-content">
+      <span>{{ note.message }}</span>
+      <div class="btns">
+        <button (click)="service.togglePin(note.id)">{{ note.isPinned ? '📌' : '📍' }}</button>
+        <button (click)="service.remove(note.id)">✕</button>
+      </div>
+    </div>
+    @if (!note.isPinned) {
+    <div class="bar" [class]="note.type" [style.width.%]="note.progress"></div>
+    }
+  </div>
+  }
+</div>

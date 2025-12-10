@@ -8,6 +8,7 @@ import { authGuard } from './core/guards/auth.guard';
 import { Users } from './pages/users/users';
 import { Settings } from './pages/settings/settings';
 import { Help } from './pages/help/help';
+import { Calendar } from './pages/calendar/calendar';
 
 export const routes: Routes = [
   // 🔓 Public routes
@@ -21,6 +22,7 @@ export const routes: Routes = [
     canActivate: [authGuard],
     children: [
       { path: 'dashboard', component: Dashboard },
+      { path: 'calendar', component: Calendar },
       { path: 'users', component: Users },
       { path: 'settings', component: Settings },
       { path: 'help', component: Help },

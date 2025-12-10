@@ -1,0 +1,101 @@
+.notifications-container {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        z-index: 999;
+        font-family: sans-serif;
+}
+
+.notification {
+        color: white;
+        padding: 15px;
+        border-radius: 5px;
+        min-width: 300px;
+        max-width: 500px;
+        position: relative;
+        overflow: hidden;
+}
+
+.notification-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.btns button {
+        background: none;
+        border: none;
+        color: white;
+        cursor: pointer;
+        font-size: 16px;
+        margin-left: 5px;
+}
+
+.bar {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        height: 4px;
+        transition: width 1s linear;
+}
+
+
+.notification.success {
+        background: linear-gradient(90deg, #2e7d32, #4caf50);
+}
+
+.bar.success {
+        background-color: #66bb6a;
+}
+
+.notification.warning {
+        background: linear-gradient(90deg, #d8a302, #ffc107);
+        color: #333;
+}
+
+.bar.warning {
+        background-color: #ffee58;
+}
+
+.notification.error {
+        background: linear-gradient(90deg, #f41707, #fa5c5c);
+}
+
+.bar.error {
+        background-color: #e57373;
+}
+
+.notification.info {
+        background: linear-gradient(90deg, #027ee3, #2196f3);
+}
+
+.bar.info {
+        background-color: #64b5f6;
+}
+
+
+.enter-animation {
+        transition: transform 300ms ease-out, opacity 300ms ease-out;
+        animation: slide-fade 1s;
+}
+
+@keyframes slide-fade {
+        from {
+                opacity: 0;
+                transform: translateY(calc(100vh - 100% - 20px));
+        }
+
+        to {
+                opacity: 1;
+                transform: translateY(0);
+        }
+}
+
+.leaving {
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: opacity 500ms ease-out, transform 500ms ease-out;
+}
